@@ -1,0 +1,22 @@
+name: Bug
+description: Template para registrar bugs no projeto
+title: "`[BUG]` - Título"
+projects: "odavibatista/7"
+labels:
+  - "bug"
+
+body:
+  - type: textarea
+    id: showcase
+    attributes:
+      label: Informações
+    validations:
+      required: true
+
+  - type: textarea
+    id: print
+    attributes:
+      label: Prints
+    validations:
+      required: true
+  
