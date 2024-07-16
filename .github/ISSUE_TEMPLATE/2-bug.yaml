@@ -1,7 +1,8 @@
 name: Bug
 description: Template para registrar bugs no projeto
 title: "`[BUG]` - Título"
-projects: "odavibatista/7"
+projects: "odavibatista/9"
+
 labels:
   - "bug"
 
