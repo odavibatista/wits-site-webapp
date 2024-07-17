@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:up": "docker compose up --build -d",
+    "docker:down": "docker compose down --rmi 'all' --volumes",
+    "docker:restart": "docker compose restart",
+    "docker:rebuild": "npm run docker:down; npm run docker:up",
+    "docker:logs": "docker compose logs -f"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
