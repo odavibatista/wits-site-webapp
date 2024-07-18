@@ -1,7 +1,9 @@
+import HeaderNoAuth from "@/components/HeaderNoAuth";
+
 export default function Home() {
   return (
     <main>
-      <h1 className="border">Wits Webapp</h1>
+      <HeaderNoAuth />
     </main>
   )
 }
