@@ -1,5 +1,5 @@
 export interface DynamicRoute {
-    params: {
-      id: string;
-    };
-  }  
+  params: {
+    id: string
+  }
+}
