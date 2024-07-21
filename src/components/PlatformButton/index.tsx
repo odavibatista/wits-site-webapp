@@ -1,19 +1,23 @@
-import React from "react"
+import React from 'react'
 
 interface ButtonProps {
-    platform_name: string
-    image_url: string
+  platformName: string
+  imageUrl: string
 }
 
-const PlatformButton:React.FC<ButtonProps> = ({platform_name, image_url}) => {
-    return (
-        <>
-            <div className="w-44 h-9 rounded-lg text-white flex items-center justify-center gap-4 m-2">
-                <img className="w-8 h-8" src={image_url} alt={`Logo da plataforma ${platform_name}`} />
-                <p className="font-mono text-lg">{platform_name}</p>
-            </div>
-        </>
-    )
+const PlatformButton: React.FC<ButtonProps> = ({ platformName, imageUrl }) => {
+  return (
+    <>
+      <div className="m-2 flex h-9 w-44 items-center justify-center gap-4 rounded-lg text-white">
+        <img
+          className="h-8 w-8"
+          src={imageUrl}
+          alt={`Logo da plataforma ${platformName}`}
+        />
+        <p className="font-mono text-lg">{platformName}</p>
+      </div>
+    </>
+  )
 }
 
 export default PlatformButton

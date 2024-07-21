@@ -1,4 +1,4 @@
-import { Navbar } from '@/components/Navbar'
+import HeaderNoAuth from '@/components/HeaderNoAuth'
 
 export default function PublicLayout({
   children,
@@ -7,7 +7,7 @@ export default function PublicLayout({
 }>) {
   return (
     <>
-      <Navbar />
+      <HeaderNoAuth />
       {children}
     </>
   )
