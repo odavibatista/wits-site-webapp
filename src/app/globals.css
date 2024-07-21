@@ -14,7 +14,8 @@
   }
 
   .text-custom-gradient {
-    @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text 
+    text-transparent font-bold
   }
 }
 
