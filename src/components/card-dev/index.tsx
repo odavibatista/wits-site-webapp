@@ -27,7 +27,7 @@ export function CardDev({ dev }: { dev: IDevelopers }) {
     <div className="flex flex-col rounded-2xl bg-neutral-950/30 p-2">
       <div className="flex items-center justify-between">
         <span>{dev.name}</span>
-        <div className="relative mb-3 ml-auto h-20 w-20 overflow-hidden rounded-3xl">
+        <div className="relative mb-3 ml-auto h-20 w-20 overflow-hidden rounded-full">
           <Image
             src={dev.avatar}
             alt={`Foto de ${dev.name}`}
