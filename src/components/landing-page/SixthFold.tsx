@@ -1,7 +1,7 @@
 export function SixthFold() {
   return (
-    <div>
-      <h6 className="text-custom-gradient text-2xl">Como funciona</h6>
+    <div className="lp-section">
+      <h6 className="text-custom-gradient lp-title">Como funciona</h6>
     </div>
   )
 }

@@ -2,10 +2,24 @@ import { BtnBlur } from '../button'
 
 export function FourthFold() {
   return (
-    <div>
-      <h4 className="text-custom-gradient text-2xl">Aulas gamificadas</h4>
-      <h4 className="text-custom-gradient text-2xl">Placares de líderes</h4>
-      <BtnBlur title="Comece a aprender agora mesmo" />
+    <div className="lp-section">
+      <section>
+        <h2 className="text-custom-gradient lp-title">Aulas gamificadas</h2>
+        <p className="mx-auto max-w-5xl text-center text-xl">
+          Aprenda com exercícios interativos, desafios e projetos, elaborados
+          por especialistas em aprendizagem e apoiados por pesquisas
+        </p>
+      </section>
+      <section>
+        <h2 className="text-custom-gradient lp-title">Placares de líderes</h2>
+        <p className="mx-auto max-w-5xl text-center text-xl">
+          Compita com outros alunos e suba na classificação ao concluir
+          exercícios, desafios e projetos
+        </p>
+      </section>
+      <div className="flex items-center justify-center">
+        <BtnBlur title="Comece a aprender agora mesmo" />
+      </div>
     </div>
   )
 }

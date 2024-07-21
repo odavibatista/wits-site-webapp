@@ -17,6 +17,18 @@
     @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text 
     text-transparent font-bold
   }
+
+  .lp-section {
+    @apply my-20 space-y-20 min-h-[590px]
+  }
+
+  .lp-title {
+    @apply mx-auto max-w-5xl text-center text-3xl my-8
+  }
+
+  .lp-subtitle {
+    @apply mx-auto max-w-5xl text-3xl my-8
+  }
 }
 
 @layer utilities {
