@@ -4,8 +4,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { BtnDefault, BtnPrimary } from '../button'
+import { usePathname, useRouter } from 'next/navigation'
 
 const HeaderNoAuth = () => {
+  const pathname = usePathname()
+  const { replace } = useRouter()
   const [isOpen, setIsOpen] = useState<true | false>(false)
 
   return (
@@ -23,8 +26,14 @@ const HeaderNoAuth = () => {
             </Link>
             <div className="hidden md:block">
               <div className="flex gap-3">
-                <BtnDefault title="Entrar" />
-                <BtnPrimary title="Criar conta" />
+                <BtnDefault
+                  title="Entrar"
+                  onClick={() => replace(`${pathname}?auth=login`)}
+                />
+                <BtnPrimary
+                  title="Criar conta"
+                  onClick={() => replace(`${pathname}?auth=register`)}
+                />
               </div>
             </div>
           </div>

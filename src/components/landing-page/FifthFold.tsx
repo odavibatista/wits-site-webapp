@@ -5,7 +5,7 @@ export function FifthFold() {
   return (
     <div className="lp-section">
       <section className="grid grid-cols-2 items-center justify-center gap-8">
-        <h2 className="lp-subtitle">
+        <h2 className="lp-subtitle text-center">
           Os alunos do Wits têm{' '}
           <span className="text-custom-gradient">histórias inspiradoras</span>{' '}
           para contar

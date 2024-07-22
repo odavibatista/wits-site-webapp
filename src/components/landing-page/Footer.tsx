@@ -25,7 +25,7 @@ export function Footer() {
         </span>
       </div>
       <div className="flex flex-1 flex-col items-center">
-        <h3 className="font-firaMono mb-5 -tracking-tighter text-neutral-400">
+        <h3 className="mb-5 font-firaMono -tracking-tighter text-neutral-400">
           Desenvolvedores
         </h3>
         <div className="flex space-x-16">

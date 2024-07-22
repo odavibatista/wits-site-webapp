@@ -14,7 +14,7 @@ export function HistoryCard({
   imageUrl,
 }: HistoryCardProps) {
   return (
-    <div className="font-firaMono flex h-[373px] w-[474px] overflow-hidden rounded-2xl text-neutral-700">
+    <div className="mx-auto flex h-[373px] w-[474px] overflow-hidden rounded-2xl font-firaMono text-neutral-700">
       <div className="relative h-full min-w-40">
         <Image
           src={imageUrl}

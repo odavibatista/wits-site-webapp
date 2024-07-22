@@ -1,3 +1,4 @@
+import { CardAuth } from '@/components/card-auth'
 import { FifthFold } from '@/components/landing-page/FifthFold'
 import { FirstFold } from '@/components/landing-page/FirstFold'
 import { Footer } from '@/components/landing-page/Footer'
@@ -16,6 +17,9 @@ export default function Home() {
       <FifthFold />
       <SixthFold />
       <Footer />
+
+      {/* Autenticação */}
+      <CardAuth />
     </main>
   )
 }
