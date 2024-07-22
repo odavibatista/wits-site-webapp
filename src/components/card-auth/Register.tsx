@@ -12,7 +12,7 @@ export function CardRegister() {
 
   return (
     <>
-      <div className="fixed right-0 top-0 z-10 min-h-screen max-w-md border-l-2 border-neutral-700 bg-neutral-800 p-6">
+      <div className="fixed right-0 top-0 z-10 min-h-screen border-l-2 border-neutral-700 bg-neutral-800 p-6 md:min-w-[413px]">
         <ChevronLeft
           onClick={() => replace(pathname, { scroll: false })}
           className="cursor-pointer"

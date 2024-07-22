@@ -15,7 +15,7 @@ const CardTestimony: React.FC<CardProps> = ({
   profession,
 }) => {
   return (
-    <div className="font-firaMono flex h-80 w-72 flex-col justify-between rounded-2xl bg-zinc-300 px-2 py-4 text-neutral-700">
+    <div className="flex h-80 w-72 flex-col justify-between rounded-2xl bg-zinc-300 px-2 py-4 font-firaMono text-neutral-700">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-bold">{studentName}</h2>
         <div className="relative h-16 w-16 rounded-full">

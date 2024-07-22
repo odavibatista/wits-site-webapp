@@ -12,7 +12,7 @@ export function CardLogin() {
 
   return (
     <>
-      <div className="fixed right-0 top-0 z-10 min-h-screen min-w-[448px] border-l-2 border-neutral-700 bg-neutral-800 p-6">
+      <div className="fixed right-0 top-0 z-10 min-h-screen border-l-2 border-neutral-700 bg-neutral-800 p-6">
         <ChevronLeft
           onClick={() => replace(pathname, { scroll: false })}
           className="cursor-pointer"
