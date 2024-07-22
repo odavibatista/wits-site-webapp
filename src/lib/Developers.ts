@@ -21,11 +21,11 @@ export const Developers: IDevelopers[] = [
   {
     name: 'Bruno L.',
     avatar: 'https://avatars.githubusercontent.com/u/101486699?v=4',
-    email: '',
+    email: 'thenrybruno@hotmail.com.br',
     github: 'https://github.com/thenrybruno',
-    website: '',
-    linkedin: '',
-    instagram: '',
+    website: 'https://thenrybruno.github.io/portifolio',
+    linkedin: 'https://www.linkedin.com/in/bruno-bcode',
+    instagram: '//',
   },
   {
     name: 'Thiago M.',

@@ -11,8 +11,8 @@ export function Footer() {
         <div className="flex flex-col space-y-2.5">
           <Image
             src="/assets/LogotipoGradient.svg"
-            height={100}
-            width={100}
+            height={130}
+            width={130}
             alt="Logotipo Wits"
           />
           <span className="max-w-48 text-lg">
@@ -25,7 +25,7 @@ export function Footer() {
         </span>
       </div>
       <div className="flex flex-1 flex-col items-center">
-        <h3 className="mb-5 font-firaMono -tracking-tighter text-neutral-400">
+        <h3 className="font-firaMono mb-5 -tracking-tighter md:text-2xl text-neutral-400">
           Desenvolvedores
         </h3>
         <div className="flex space-x-16">
