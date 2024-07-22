@@ -1,33 +1,23 @@
-import Image from 'next/image'
-
 export function FirstFold() {
-  const ImageBackground = () => {
-    return (
-      <div className="relative h-[280px] w-full overflow-hidden sm:h-[480px]">
-        <Image
-          src="/assets/cerebro.webp"
-          height={600}
-          width={600}
-          alt="background image brain"
-          className="absolute -right-12 w-[280px] sm:-right-[90px] sm:w-[480px]"
-        />
-      </div>
-    )
-  }
-
   return (
-    <section className="relative flex">
-      <article className="absolute translate-y-40 space-y-2 text-xl font-bold sm:space-y-5 sm:text-3xl">
-        <span className="text-custom-gradient mr-2 inline-flex items-center">
+    <section className="min-h-[590px] md:my-8 lg:my-20">
+      <article className="absolute z-10 translate-y-36 font-bold sm:translate-y-40">
+        <span className="text-custom-gradient mr-2 inline-flex items-center text-3xl sm:text-6xl lg:text-7xl xl:text-8xl">
           &gt;&gt;
         </span>
-        <span>Pratique</span>
-        <p className="text-custom-gradient">lógica e raciocínio</p>
-        <p className="max-w-[220px] text-xs font-medium sm:min-w-[300px] sm:text-base">
+        <span className="text-3xl sm:text-6xl lg:text-7xl xl:text-8xl">
+          Pratique
+        </span>
+
+        <p className="text-custom-gradient my-1 text-2xl sm:mt-3 sm:text-4xl md:my-2 lg:my-5 lg:h-[66px] lg:text-5xl xl:text-6xl">
+          lógica e raciocínio
+        </p>
+
+        <p className="max-w-[250px] text-xs font-light sm:max-w-[500px] sm:text-lg md:max-w-full lg:text-xl xl:text-2xl">
           Nunca foi tão fácil desenvolver suas habilidades
         </p>
       </article>
-      <ImageBackground />
+      <div className="image-background -translate-y-36 sm:-translate-y-28 md:-translate-y-16" />
     </section>
   )
 }

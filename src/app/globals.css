@@ -52,3 +52,14 @@
     @apply bg-neutral-800
   }
 }
+
+.image-background {
+  position: relative;
+  background-image: url("/assets/cerebro.webp");
+  background-size: 65%;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  background-position: 135%;
+  height: 500px;
+  width: 100%;
+}
