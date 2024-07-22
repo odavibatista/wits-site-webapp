@@ -19,9 +19,9 @@ export function HistoryCard({
         <Image
           src={imageUrl}
           alt="Avatar"
-          layout="fill"
-          objectFit="cover"
           className="object-cover"
+          style={{ objectFit: 'cover' }}
+          fill
         />
       </div>
       <div className="flex flex-col bg-zinc-300 px-4 py-6">

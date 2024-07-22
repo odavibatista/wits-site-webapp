@@ -22,9 +22,9 @@ const CardTestimony: React.FC<CardProps> = ({
           <Image
             src={imageUrl}
             alt="Avatar"
-            layout="fill"
-            objectFit="cover"
             className="rounded-full object-cover"
+            style={{ objectFit: 'cover' }}
+            fill
           />
         </div>
       </div>

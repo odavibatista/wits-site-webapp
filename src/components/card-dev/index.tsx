@@ -31,9 +31,9 @@ export function CardDev({ dev }: { dev: IDevelopers }) {
           <Image
             src={dev.avatar}
             alt={`Foto de ${dev.name}`}
-            layout="fill"
-            objectFit="cover"
             className="object-cover opacity-80"
+            style={{ objectFit: 'cover' }}
+            fill
           />
         </div>
       </div>
