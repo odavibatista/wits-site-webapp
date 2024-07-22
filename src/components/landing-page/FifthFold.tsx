@@ -3,7 +3,7 @@ import { HistoryCard } from '../history-card'
 
 export function FifthFold() {
   const Carousel = () => (
-    <section className="flex flex-col gap-8 xl:hidden">
+    <section className="flex flex-col gap-8 lg:hidden">
       <h2 className="lp-title">
         Os alunos do Wits têm{' '}
         <span className="text-custom-gradient">histórias inspiradoras</span>{' '}
@@ -24,7 +24,7 @@ export function FifthFold() {
   )
 
   const Grid = () => (
-    <section className="hidden items-center gap-10 xl:grid xl:grid-cols-2">
+    <section className="hidden items-center gap-10 lg:grid lg:grid-cols-2">
       <h2 className="lp-title">
         Os alunos do Wits têm{' '}
         <span className="text-custom-gradient">histórias inspiradoras</span>{' '}

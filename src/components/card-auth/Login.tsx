@@ -12,12 +12,12 @@ export function CardLogin() {
 
   return (
     <>
-      <div className="fixed right-0 top-0 z-10 min-h-screen border-l-2 border-neutral-700 bg-neutral-800 p-6">
+      <div className="fixed right-0 top-0 z-50 min-h-screen border-l-2 border-neutral-700 bg-neutral-800 p-6">
         <ChevronLeft
           onClick={() => replace(pathname, { scroll: false })}
           className="cursor-pointer"
         />
-        <div className="flex flex-col items-center space-y-6">
+        <form className="no-scrollbar flex max-h-[90vh] flex-col items-center space-y-6 overflow-y-scroll pb-40">
           <Image
             src="/assets/LogotipoGradient.svg"
             height={120}
@@ -54,11 +54,11 @@ export function CardLogin() {
             />
             <BtnBlur title="Acessar" className="w-full" />
           </div>
-        </div>
+        </form>
       </div>
       <div
         onClick={() => replace(pathname, { scroll: false })}
-        className="fixed left-0 top-0 min-h-screen w-full bg-neutral-950/80"
+        className="fixed left-0 top-0 z-20 min-h-screen w-full bg-neutral-950/80"
       />
     </>
   )

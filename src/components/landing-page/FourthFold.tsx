@@ -1,6 +1,12 @@
+'use client'
+
+import { usePathname, useRouter } from 'next/navigation'
 import { BtnBlur } from '../button'
 
 export function FourthFold() {
+  const pathname = usePathname()
+  const { replace } = useRouter()
+
   return (
     <div className="lp-section">
       <section>
@@ -18,7 +24,12 @@ export function FourthFold() {
         </p>
       </section>
       <div className="flex items-center justify-center">
-        <BtnBlur title="Comece a aprender agora mesmo" />
+        <BtnBlur
+          title="Comece a aprender agora mesmo"
+          onClick={() =>
+            replace(`${pathname}?auth=register`, { scroll: false })
+          }
+        />
       </div>
     </div>
   )
