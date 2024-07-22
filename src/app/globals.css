@@ -23,7 +23,7 @@
   }
 
   .lp-title {
-    @apply mx-auto max-w-5xl text-center text-3xl my-8
+    @apply mx-auto max-w-5xl text-center text-lg md:text-3xl my-8
   }
 
   .lp-subtitle {

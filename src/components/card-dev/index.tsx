@@ -17,14 +17,14 @@ export function CardDev({ dev }: { dev: IDevelopers }) {
     <Link
       href={href}
       target="_blank"
-      className="my-1 flex items-end text-xs text-neutral-400 hover:text-neutral-100"
+      className="my-1 flex items-end text-xs text-neutral-300 hover:text-neutral-100"
     >
       <Icon className="mr-1 h-5 w-5" /> {label}
     </Link>
   )
 
   return (
-    <div className="flex flex-col rounded-2xl bg-neutral-950/30 p-2">
+    <div className="flex min-w-fit flex-1 flex-col rounded-2xl border border-neutral-950/60 bg-neutral-950/30 p-2">
       <div className="flex items-center justify-between">
         <span>{dev.name}</span>
         <div className="relative mb-3 ml-auto h-20 w-20 overflow-hidden rounded-full">
@@ -37,7 +37,7 @@ export function CardDev({ dev }: { dev: IDevelopers }) {
           />
         </div>
       </div>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3">
         {dev.email && <Social Icon={Mail} label="E-mail" href={dev.email} />}
         {dev.github && (
           <Social Icon={Github} label="Github" href={dev.github} />
