@@ -53,13 +53,14 @@ export function CardRegister() {
           </div>
           <div className="flex w-full justify-between gap-2">
             <BtnDefault
+              type="button"
               title="Acessar"
               className="w-full"
               onClick={() =>
                 replace(`${pathname}?auth=login`, { scroll: false })
               }
             />
-            <BtnBlur title="Criar conta" className="w-full" />
+            <BtnBlur title="Criar conta" type="submit" className="w-full" />
           </div>
         </form>
       </div>
