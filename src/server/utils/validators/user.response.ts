@@ -1,10 +1,10 @@
 interface IUserResponse {
-    user: {
-      id: number;
-      name: string;
-      role: string;
-    };
-    token: string;
+  user: {
+    id: number
+    name: string
+    role: string
   }
-  
-  export default IUserResponse;  
+  token: string
+}
+
+export default IUserResponse

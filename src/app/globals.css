@@ -1,3 +1,65 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-neutral-950 max-w-[96%] w-[1280px] mx-auto
+  }
+}
+
+@layer components {
+  .bg-custom-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500
+  }
+
+  .text-custom-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text 
+    text-transparent font-bold
+  }
+
+  .lp-section {
+    @apply my-20 space-y-20 min-h-[590px]
+  }
+
+  .lp-title {
+    @apply mx-auto max-w-5xl text-center text-lg md:text-3xl my-8
+  }
+
+  .lp-subtitle {
+    @apply mx-auto max-w-5xl text-3xl my-8
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+     &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2 fixed
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-950
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-800
+  }
+}
+
+.image-background {
+  position: relative;
+  background-image: url("/assets/cerebro.webp");
+  background-size: 65%;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  background-position: 135%;
+  height: 500px;
+  width: 100%;
+}
