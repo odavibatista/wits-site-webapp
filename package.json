@@ -17,10 +17,12 @@
     "@hookform/resolvers": "^3.9.0",
     "axios": "^1.7.2",
     "framer-motion": "^11.3.8",
+    "jose": "^5.6.3",
     "lucide-react": "^0.412.0",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
+    "sonner": "^1.5.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
