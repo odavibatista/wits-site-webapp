@@ -3,8 +3,9 @@
 import { ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { BtnBlur, BtnDefault } from '../button'
-import { InputPassword, InputText } from '../input'
+import { BtnBlur, BtnDefault } from '@/components/button'
+import { InputPassword, InputText } from '@/components/input'
+import { motion } from 'framer-motion'
 
 export function CardLogin() {
   const pathname = usePathname()
@@ -12,7 +13,13 @@ export function CardLogin() {
 
   return (
     <>
-      <div className="fixed right-0 top-0 z-50 min-h-screen border-l-2 border-neutral-700 bg-neutral-800 p-6">
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 100 }}
+        transition={{ duration: 0.5 }}
+        className="fixed right-0 top-0 z-50 min-h-screen border-l-2 border-neutral-700 bg-neutral-800 p-6"
+      >
         <ChevronLeft
           onClick={() => replace(pathname, { scroll: false })}
           className="cursor-pointer"
@@ -46,16 +53,17 @@ export function CardLogin() {
           </div>
           <div className="flex w-full justify-between gap-2">
             <BtnDefault
+              type="button"
               title="Criar conta"
               className="w-full"
               onClick={() =>
                 replace(`${pathname}?auth=register`, { scroll: false })
               }
             />
-            <BtnBlur title="Acessar" className="w-full" />
+            <BtnBlur title="Acessar" type="submit" className="w-full" />
           </div>
         </form>
-      </div>
+      </motion.div>
       <div
         onClick={() => replace(pathname, { scroll: false })}
         className="fixed left-0 top-0 z-20 min-h-screen w-full bg-neutral-950/80"
