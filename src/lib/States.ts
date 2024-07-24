@@ -1,7 +1,6 @@
 export interface LoginUserFormState {
   errors: {
-    name?: string[]
-    email?: string[]
+    username?: string[]
     password?: string[]
     _form?: string
     _apiResponse?: string

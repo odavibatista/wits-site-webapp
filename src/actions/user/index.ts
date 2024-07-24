@@ -2,11 +2,52 @@
 
 import { getHomeData } from '@/app/api/user/home-data.endpoint'
 import { register } from '@/app/api/user/register.endpoint'
-import { RegisterUserSchema } from '@/lib/Schemas'
-import { RegisterUserFormState } from '@/lib/States'
+import { LoginUserSchema, RegisterUserSchema } from '@/lib/Schemas'
+import { LoginUserFormState, RegisterUserFormState } from '@/lib/States'
 import { userTypeguard } from '@/utils/typeguard'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { login as loginRouteHandler } from '@/app/api/user/login.endpoint'
+
+export async function login(
+  formState: LoginUserFormState,
+  formData: FormData,
+): Promise<LoginUserFormState> {
+  const parsed = LoginUserSchema.safeParse({
+    username: formData.get('username'),
+    password: formData.get('password'),
+  })
+
+  if (!parsed.success) {
+    return { errors: parsed.error.flatten().fieldErrors }
+  }
+
+  try {
+    const userDTO = {
+      username: parsed.data.username,
+      inserted_password: parsed.data.password,
+    }
+
+    const res = await loginRouteHandler(userDTO)
+
+    if (userTypeguard.isLoginResponse(res)) {
+      cookies().set('wits-app-session', res.token, {
+        path: '/',
+        httpOnly: true,
+      })
+    } else {
+      return { errors: { _apiResponse: res.message } }
+    }
+  } catch (err) {
+    return {
+      errors: {
+        _form: 'Não foi possível estabelecer uma conexão com o servidor',
+      },
+    }
+  }
+
+  return redirect('/dashboard')
+}
 
 export async function create(
   formState: RegisterUserFormState,
