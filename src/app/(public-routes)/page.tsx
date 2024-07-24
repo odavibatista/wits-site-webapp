@@ -6,6 +6,7 @@ import { FourthFold } from '@/components/landing-page/FourthFold'
 import { SecondFold } from '@/components/landing-page/SecondFold'
 import { SixthFold } from '@/components/landing-page/SixthFold'
 import { ThirdFold } from '@/components/landing-page/ThirdFold'
+import { Suspense } from 'react'
 
 export default function Home() {
   return (
@@ -19,7 +20,9 @@ export default function Home() {
       <Footer />
 
       {/* Autenticação */}
-      <CardAuth />
+      <Suspense>
+        <CardAuth />
+      </Suspense>
     </main>
   )
 }
