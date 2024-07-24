@@ -10,12 +10,12 @@ export interface IRegisterResponse {
   user: {
     id: number
     username: string
-    role: 'user' | 'admin'
+    role: 'common' | 'admin'
   }
   token: string
 }
 
-const register = async (
+export const register = async (
   data: IRegisterRequest,
 ): Promise<IRegisterResponse | IAPIError> => {
   const response = await api.post('/user/register', data).catch((error) => {
@@ -24,5 +24,3 @@ const register = async (
 
   return response.data
 }
-
-export default register

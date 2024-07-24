@@ -1,13 +1,14 @@
 'use server'
 
-import register from '@/app/api/user/register.endpoint'
+import { getHomeData } from '@/app/api/user/home-data.endpoint'
+import { register } from '@/app/api/user/register.endpoint'
 import { RegisterUserSchema } from '@/lib/Schemas'
 import { RegisterUserFormState } from '@/lib/States'
-import { isRegisterResponse } from '@/utils/typeguard'
+import { userTypeguard } from '@/utils/typeguard'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-export async function registerUserAction(
+export async function create(
   formState: RegisterUserFormState,
   formData: FormData,
 ): Promise<RegisterUserFormState> {
@@ -31,8 +32,8 @@ export async function registerUserAction(
 
     const res = await register(data)
 
-    if (isRegisterResponse(res)) {
-      cookies().set('wits-app-session', JSON.stringify(res.user), {
+    if (userTypeguard.isRegisterResponse(res)) {
+      cookies().set('wits-app-session', res.token, {
         path: '/',
         httpOnly: true,
       })
@@ -47,5 +48,10 @@ export async function registerUserAction(
     }
   }
 
-  redirect('/test')
+  return redirect('/dashboard')
+}
+
+export async function canActivate(token: string) {
+  const response = await getHomeData(token)
+  return userTypeguard.isHomeDataResponse(response)
 }

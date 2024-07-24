@@ -6,15 +6,15 @@ import { usePathname, useRouter } from 'next/navigation'
 import { InputPassword, InputText } from '@/components/input'
 import { BtnBlur, BtnDefault } from '@/components/button'
 import { useFormState } from 'react-dom'
-import { registerUserAction } from '@/actions/user'
 import { InputConfirmPassword } from '@/components/input/InputConfirmPassword'
 import { toast } from 'sonner'
+import { actions } from '@/actions'
 
 export function CardRegister() {
   const pathname = usePathname()
   const { replace } = useRouter()
 
-  const [formState, action] = useFormState(registerUserAction, { errors: {} })
+  const [formState, action] = useFormState(actions.user.create, { errors: {} })
 
   if (formState.errors._apiResponse) {
     toast.error(formState.errors._apiResponse)
