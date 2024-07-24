@@ -1,5 +1,5 @@
-import { Platforms } from "@/lib/mocks/Platform";
-import { BtnPlatform } from "../button";
+import { Platforms } from '@/lib/mocks/Platform'
+import { BtnPlatform } from '../button'
 
 export function ThirdFold() {
   return (
@@ -10,8 +10,8 @@ export function ThirdFold() {
         qualquer hora, em qualquer lugar
       </h2>
       <section className="flex items-center justify-center gap-2">
-        {Platforms.map((platform) =>(
-          <BtnPlatform 
+        {Platforms.map((platform) => (
+          <BtnPlatform
             key={platform.id}
             imageUrl={platform.pathImage}
             platformName={platform.name}
