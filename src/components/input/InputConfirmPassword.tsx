@@ -9,18 +9,19 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string[]
 }
 
-export function InputPassword({
+export function InputConfirmPassword({
   name,
   label,
-  placeHolder,
   isInvalid,
-  errorMessage,
+  placeHolder,
   className,
+  errorMessage,
   ...props
 }: InputProps) {
   const [visible, setVisible] = useState<true | false>(false)
 
   return (
+    // <div className="flex w-full gap-2">
     <div className="flex flex-1 flex-col space-y-2">
       <label htmlFor={name} className="text-sm">
         {label}

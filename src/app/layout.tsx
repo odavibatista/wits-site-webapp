@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { IBM_Plex_Sans as IBM, Fira_Mono as FiraMono } from 'next/font/google'
 import './globals.css'
+import { Providers } from './providers'
 
 const ibm = IBM({
   subsets: ['latin'],
@@ -27,7 +28,7 @@ export default function RootLayout({
       <body
         className={`overflow-y-scroll ${ibm.className} ${firaMono.className}`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

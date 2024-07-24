@@ -3,12 +3,22 @@
 import { ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { InputPassword, InputText } from '../input'
-import { BtnBlur, BtnDefault } from '../button'
+import { InputPassword, InputText } from '@/components/input'
+import { BtnBlur, BtnDefault } from '@/components/button'
+import { useFormState } from 'react-dom'
+import { InputConfirmPassword } from '@/components/input/InputConfirmPassword'
+import { toast } from 'sonner'
+import { actions } from '@/actions'
 
 export function CardRegister() {
   const pathname = usePathname()
   const { replace } = useRouter()
+
+  const [formState, action] = useFormState(actions.user.create, { errors: {} })
+
+  if (formState.errors._apiResponse) {
+    toast.error(formState.errors._apiResponse)
+  }
 
   return (
     <>
@@ -17,7 +27,10 @@ export function CardRegister() {
           onClick={() => replace(pathname, { scroll: false })}
           className="cursor-pointer"
         />
-        <form className="no-scrollbar flex max-h-[90vh] flex-col items-center space-y-6 overflow-y-scroll pb-40">
+        <form
+          action={action}
+          className="no-scrollbar flex max-h-[90vh] flex-col items-center space-y-6 overflow-y-scroll pb-40"
+        >
           <Image
             src="/assets/LogotipoGradient.svg"
             height={120}
@@ -36,19 +49,32 @@ export function CardRegister() {
               label="Nome e sobrenome"
               placeHolder="Nome e sobrenome"
               className="w-full"
+              isInvalid={!!formState.errors.name}
+              errorMessage={formState.errors.name}
             />
             <InputText
               name="email"
               label="Digite o seu email"
               placeHolder="Digite o seu email"
               className="w-full"
+              isInvalid={!!formState.errors.email}
+              errorMessage={formState.errors.email}
             />
             <InputPassword
               name="password"
               label="Crie uma senha"
               placeHolder="Crie uma senha"
               className="w-full"
-              confirmPassoword
+              isInvalid={!!formState.errors.password}
+              errorMessage={formState.errors.password}
+            />
+            <InputConfirmPassword
+              name="confirmPassword"
+              label="Confirme a senha"
+              placeHolder="Confirme a senha"
+              className="w-full"
+              isInvalid={!!formState.errors.confirmPassword}
+              errorMessage={formState.errors.confirmPassword}
             />
           </div>
           <div className="flex w-full justify-between gap-2">
