@@ -6,10 +6,19 @@ import { usePathname, useRouter } from 'next/navigation'
 import { BtnBlur, BtnDefault } from '@/components/button'
 import { InputPassword, InputText } from '@/components/input'
 import { motion } from 'framer-motion'
+import { useFormState } from 'react-dom'
+import { actions } from '@/actions'
+import { toast } from 'sonner'
 
 export function CardLogin() {
   const pathname = usePathname()
   const { replace } = useRouter()
+
+  const [formState, action] = useFormState(actions.user.login, { errors: {} })
+
+  if (formState.errors._apiResponse) {
+    toast.error(formState.errors._apiResponse)
+  }
 
   return (
     <>
@@ -24,7 +33,10 @@ export function CardLogin() {
           onClick={() => replace(pathname, { scroll: false })}
           className="cursor-pointer"
         />
-        <form className="no-scrollbar flex max-h-[90vh] flex-col items-center space-y-6 overflow-y-scroll pb-40">
+        <form
+          action={action}
+          className="no-scrollbar flex max-h-[90vh] flex-col items-center space-y-6 overflow-y-scroll pb-40"
+        >
           <Image
             src="/assets/LogotipoGradient.svg"
             height={120}
@@ -39,16 +51,20 @@ export function CardLogin() {
           </div>
           <div className="w-full space-y-3">
             <InputText
-              name="email"
-              label="Digite seu e-mail"
-              placeHolder="Digite seu e-mail"
+              name="username"
+              label="Digite o nome do usuário"
+              placeHolder="Digite o nome do usuário"
               className="w-full"
+              isInvalid={!!formState.errors.username}
+              errorMessage={formState.errors.username}
             />
             <InputPassword
               name="password"
               label="Digite sua senha"
               placeHolder="Digite sua senha"
               className="w-full"
+              isInvalid={!!formState.errors.password}
+              errorMessage={formState.errors.password}
             />
           </div>
           <div className="flex w-full justify-between gap-2">

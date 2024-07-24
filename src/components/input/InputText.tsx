@@ -6,7 +6,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
   placeHolder: string
   isInvalid?: boolean
-  errorMessage?: boolean
+  errorMessage?: string[]
 }
 
 export function InputText({
@@ -36,8 +36,8 @@ export function InputText({
         />
       </div>
       {errorMessage && (
-        <span className="flex gap-1 text-danger-500">
-          <CircleAlert size={16} />
+        <span className="flex items-center gap-1 text-sm text-danger-500">
+          <CircleAlert size={16} className="-translate-y-0.5" />
           {errorMessage}
         </span>
       )}
