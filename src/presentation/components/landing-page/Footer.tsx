@@ -1,4 +1,4 @@
-import { Developers } from '@/lib/Developers'
+import { Developers } from '@/presentation/lib/Developers'
 import Image from 'next/image'
 import { CardDev } from '@/components/card-dev'
 

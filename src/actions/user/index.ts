@@ -2,9 +2,9 @@
 
 import { getHomeData } from '@/app/api/user/home-data.endpoint'
 import { register } from '@/app/api/user/register.endpoint'
-import { LoginUserSchema, RegisterUserSchema } from '@/lib/Schemas'
-import { LoginUserFormState, RegisterUserFormState } from '@/lib/States'
-import { userTypeguard } from '@/utils/typeguard'
+import { LoginUserSchema, RegisterUserSchema } from '@/presentation/lib/Schemas'
+import { LoginUserFormState, RegisterUserFormState } from '@/presentation/lib/States'
+import { userTypeguard } from '@/server/utils/typeguard'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { login as loginRouteHandler } from '@/app/api/user/login.endpoint'
