@@ -1,6 +1,6 @@
 import { Developers } from '@/presentation/lib/Developers'
 import Image from 'next/image'
-import { CardDev } from '@/components/card-dev'
+import { CardDev } from '../card-dev'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()

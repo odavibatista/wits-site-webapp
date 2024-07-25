@@ -3,12 +3,12 @@
 import { ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { BtnBlur, BtnDefault } from '@/components/button'
-import { InputPassword, InputText } from '@/components/input'
 import { motion } from 'framer-motion'
 import { useFormState } from 'react-dom'
 import { actions } from '@/actions'
 import { toast } from 'sonner'
+import { BtnBlur, BtnDefault } from '../button'
+import { InputPassword, InputText } from '../input'
 
 export function CardLogin() {
   const pathname = usePathname()
