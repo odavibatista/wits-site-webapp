@@ -10,13 +10,13 @@ export interface IDevelopers {
 
 export const Developers: IDevelopers[] = [
   {
-    name: 'Davi D.',
+    name: 'Davi B.',
     avatar: 'https://avatars.githubusercontent.com/u/91736880?v=4',
-    email: '',
+    email: 'odavibatista@hotmail.com',
     github: 'https://github.com/odavibatista',
-    website: '',
-    linkedin: '',
-    instagram: '',
+    website: 'https://davibatista.tech/',
+    linkedin: 'https://www.linkedin.com/in/-davi-batista/',
+    instagram: '-',
   },
   {
     name: 'Bruno L.',

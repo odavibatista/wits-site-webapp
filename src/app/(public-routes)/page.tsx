@@ -1,11 +1,12 @@
-import { CardAuth } from '@/components/card-auth'
-import { FifthFold } from '@/components/landing-page/FifthFold'
-import { FirstFold } from '@/components/landing-page/FirstFold'
-import { Footer } from '@/components/landing-page/Footer'
-import { FourthFold } from '@/components/landing-page/FourthFold'
-import { SecondFold } from '@/components/landing-page/SecondFold'
-import { SixthFold } from '@/components/landing-page/SixthFold'
-import { ThirdFold } from '@/components/landing-page/ThirdFold'
+import { CardAuth } from '@/presentation/components/card-auth'
+import { FifthFold } from '@/presentation/components/landing-page/FifthFold'
+import { FirstFold } from '@/presentation/components/landing-page/FirstFold'
+import { Footer } from '@/presentation/components/landing-page/Footer'
+import { FourthFold } from '@/presentation/components/landing-page/FourthFold'
+import { SecondFold } from '@/presentation/components/landing-page/SecondFold'
+import { SixthFold } from '@/presentation/components/landing-page/SixthFold'
+import { ThirdFold } from '@/presentation/components/landing-page/ThirdFold'
+import { Suspense } from 'react'
 
 export default function Home() {
   return (
@@ -19,7 +20,9 @@ export default function Home() {
       <Footer />
 
       {/* Autenticação */}
-      <CardAuth />
+      <Suspense>
+        <CardAuth />
+      </Suspense>
     </main>
   )
 }
