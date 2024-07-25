@@ -1,11 +1,11 @@
 import api, { IAPIError, IAPIResponse } from '../api'
 
 export const deleteCourse = async (
-    course_id: number,
+    courseId: number,
     token: string,
 ): Promise<IAPIResponse | IAPIError> => {
     const response = await api
-        .delete(`/course/remove/${course_id}`, {
+        .delete(`/course/remove/${courseId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

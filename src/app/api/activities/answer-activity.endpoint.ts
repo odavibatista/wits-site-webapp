@@ -10,11 +10,11 @@ export interface IAnswerActivityResponse {
 
 export const answerActivity = async (
     token: string,
-    activity_id: number,
+    activityId: number,
     data: IAnswerActivityRequest,
 ): Promise<IAnswerActivityResponse | IAPIError> => {
     const response = await api
-        .post(`/course/answer-activity/${activity_id}`, data, {
+        .post(`/course/answer-activity/${activityId}`, data, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

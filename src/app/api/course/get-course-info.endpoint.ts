@@ -22,10 +22,10 @@ export interface ICourseInfoResponse {
 
 export const getCourseInfo = async (
     token: string,
-    course_id: number,
+    courseId: number,
 ): Promise<ICourseInfoResponse | IAPIError> => {
     const response = await api
-        .get(`/course/${course_id}/info`, {
+        .get(`/course/${courseId}/info`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

@@ -46,8 +46,8 @@ export function CardRegister() {
           <div className="w-full space-y-3">
             <InputText
               name="name"
-              label="Nome e sobrenome"
-              placeHolder="Nome e sobrenome"
+              label="Nome de Usuário"
+              placeHolder="Nome de Usuário"
               className="w-full"
               isInvalid={!!formState.errors.name}
               errorMessage={formState.errors.name}

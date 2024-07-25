@@ -14,11 +14,11 @@ export interface IEditCourseResponse {
 
 export const editCourse = async (
     token: string,
-    course_id: number,
+    courseId: number,
     data: IEditCourseRequest,
 ): Promise<IEditCourseResponse | IAPIError> => {
     const response = await api
-        .patch(`/course/edit/${course_id}`, data, {
+        .patch(`/course/edit/${courseId}`, data, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

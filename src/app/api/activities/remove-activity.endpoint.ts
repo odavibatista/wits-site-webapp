@@ -1,11 +1,11 @@
 import api, { IAPIError, IAPIResponse } from '../api'
 
 export const removeActivity = async (
-    activity_id: number,
+    activityId: number,
     token: string,
 ): Promise<IAPIResponse | IAPIError> => {
     const response = await api
-        .delete(`/activity/remove/${activity_id}`, {
+        .delete(`/activity/remove/${activityId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
