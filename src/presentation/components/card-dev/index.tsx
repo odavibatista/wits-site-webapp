@@ -1,4 +1,4 @@
-import { IDevelopers } from '@/lib/Developers'
+import { IDevelopers } from '@/presentation/lib/Developers'
 import { AppWindowMac, Github, Instagram, Linkedin, Mail } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'

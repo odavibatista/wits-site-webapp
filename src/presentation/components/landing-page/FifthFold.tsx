@@ -1,4 +1,4 @@
-import { Persons } from '@/lib/mocks/Persons'
+import { Persons } from '@/presentation/lib/mocks/Persons'
 import { HistoryCard } from '../history-card'
 
 export function FifthFold() {

@@ -1,7 +1,7 @@
 import api from '@/app/api/api'
 import { cookies } from 'next/headers'
 import { HomeDataProvider } from './provider-home-data'
-import { userTypeguard } from '@/utils/typeguard'
+import { userTypeguard } from '@/server/utils/typeguard'
 
 export default async function PrivateLayout({
   children,

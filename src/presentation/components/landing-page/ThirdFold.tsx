@@ -1,4 +1,4 @@
-import { Platforms } from '@/lib/mocks/Platform'
+import { Platforms } from '@/presentation/lib/mocks/Platform'
 import { BtnPlatform } from '../button'
 
 export function ThirdFold() {
