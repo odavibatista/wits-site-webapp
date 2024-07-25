@@ -7,6 +7,7 @@ interface User {
   username: string
   score: number
   role: 'common' | 'admin'
+  token: string
 }
 
 const HomeDataContext = createContext<User | undefined>(undefined)

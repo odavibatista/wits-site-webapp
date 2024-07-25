@@ -20,5 +20,9 @@ export default async function PrivateLayout({
 
   if (!userTypeguard.isHomeDataResponse(res.data)) return
 
-  return <HomeDataProvider value={res.data.user}>{children}</HomeDataProvider>
+  const userDataWithToken = { ...res.data.user, token }
+
+  return (
+    <HomeDataProvider value={userDataWithToken}>{children}</HomeDataProvider>
+  )
 }
