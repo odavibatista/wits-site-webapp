@@ -1,4 +1,4 @@
-import CardTestimony from '@/components/card-testimony'
+import CardTestimony from '@/presentation/components/card-testimony'
 import { Persons } from '@/presentation/lib/mocks/Persons'
 
 export function SecondFold() {
