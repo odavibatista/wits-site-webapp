@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🧠 Wits - WEBAPP
+<br>
 
-## Getting Started
+<img src="https://i.imgur.com/18VE9Qi.png"></img>
 
-First, run the development server:
+<br>
 
-```bash
+Bem-vindo ao projeto front-end do Wits, seu e-learning gamificado de aprendizado de raciocínio e lógica. Aqui, iremos lhe instruir em como lançar a aplicação localmente e utilizá-la.
+
+<br>
+
+## 📖 Índice
+- [Instalação](#installation)
+- [Configuração](#configuration)
+- [Tecnologias Utilizadas](#techs-used)
+- [Equipe](#team)
+
+## Instalação <a name="installation"></a>
+Para instalar o projeto, será necessário algum gerenciador de pacotes JavaScript (NPM, Yarn, PNPM, Bun...).
+
+Primeiro, abra sua linhade comando e digite a seguinte linha:
+```
+git clone https://github.com/odavibatista/wits-site-webapp.git
+```
+
+E em seguida:
+```
+cd wits-site-api
+```
+
+Já na root do projeto, baixe as dependências com o seu comando de instalação (com base noseu gerenciador de pacotes):
+
+```
+npm install
+
+yarn install
+
+bun install
+```
+
+## Configuração <a name="configuration"></a>
+
+Após instalar as dependências, é preciso configurar as variáveis de ambiente do mesmo. Para isso, faça uma cópia do arquivo `.env.example` presente na root do projeto e nomeie-o para `.env`.
+
+Dentro dele, você encontrará o seguinte esqueleto de variáveis presente:
+```
+# Do not forget to use "http" instead of 'https' for local development
+BASE_URL= (A URL LOCAL DO FRONT-END)
+NEXT_PUBLIC_API= (A URL DA API, UTILIZAR SOMENTE "http" AO INVÉS DE "https" CASO SUA API SEJA LOCAL)
+```
+
+Ao preenchermos a `.env` corretamente, teremos algo similar a isso:
+```
+# Do not forget to use "http" instead of 'https' for local development
+BASE_URL="http://localhost:3000/"
+NEXT_PUBLIC_API="http://localhost:5000/"
+```
+
+Após isso, podemos enfim lançar o projeto:
+```
 npm run dev
-# or
+
 yarn dev
-# or
-pnpm dev
-# or
+
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acessando a URL fornecida pelo Next, poderemos utilizar a aplicação, integrada com a API.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tecnologias Utilizadas <a name="techs-used"></a>
+- [Axios](https://www.npmjs.com/package/axios)
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/gettingstarted/)
+- [ESLint](https://eslint.org/)
+- [Framer Motion](https://www.npmjs.com/package/framer-motion)
+- [Jose](https://www.npmjs.com/package/jose)
+- [Lucide React](https://lucide.dev/guide/packages/lucide-react)
+- [NextJS](https://nextjs.org/)
+- [NextUI](https://nextui.org/)
+- [Prettier](https://www.npmjs.com/package/prettier)
+- [React](https://react.dev/)
+- [Sonner](https://www.npmjs.com/package/sonner)
+- [TailwindCSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Zod](https://zod.dev/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Equipe <a name="team"></a>
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Bruno Almeida](https://github.com/thenrybruno)
+- [Davi Batista](https://github.com/odavibatista)
+- [Thiago Magno](https://github.com/thgmagno)
