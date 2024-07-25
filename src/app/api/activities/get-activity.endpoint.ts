@@ -14,10 +14,10 @@ export interface IGetActivityResponse {
 
 export const getActivity = async (
     token: string,
-    activity_id: number,
+    activityId: number,
 ): Promise<IGetActivityResponse | IAPIError> => {
     const response = await api
-        .get(`/activity/${activity_id}/info`, {
+        .get(`/activity/${activityId}/info`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

@@ -23,11 +23,11 @@ export interface IEditActivityResponse {
 
 export const editActivity = async (
     token: string,
-    activity_id: number,
+    activityId: number,
     data: IEditActivityRequest,
 ): Promise<IEditActivityResponse | IAPIError> => {
     const response = await api
-        .patch(`/activity/edit/${activity_id}`, data, {
+        .patch(`/activity/edit/${activityId}`, data, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
