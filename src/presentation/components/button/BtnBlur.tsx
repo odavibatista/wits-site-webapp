@@ -9,7 +9,7 @@ export function BtnBlur({ title, className, ...props }: PropsBtn) {
         className={`border-none bg-neutral-900 transition duration-500 hover:bg-neutral-900/90 ${className}`}
         {...props}
       >
-        <span className="text-custom-gradient text-lg">{title}</span>
+        <span className="text-custom-gradient text-xs md:text-base lg:text-lg">{title}</span>
       </BtnWrapper>
     </div>
   )
