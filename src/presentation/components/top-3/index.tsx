@@ -6,10 +6,10 @@ interface Props {
 
 export function Top3({ username, score, ranking }: Props) {
 
-    const div = 'flex flex-col items-center justify-center gap-2'
-    const p = 'text-custom-gradient text-5xl font-bold'
-    const scoreText = 'text-yellow-500 text-5xl font-bold'
-    const img = 'w-[100px] sm:w-[155px] md:w-[196px]'
+    const div = 'flex flex-col items-center justify-center gap:2 sm:gap-4 w-[80px] sm:w-[155px] md:w-[196px]'
+    const p = 'text-custom-gradient text-[3vw] sm:text-xl md:text-2xl font-bold'
+    const scoreText = 'text-yellow-500 text-md sm:text-2xl md:text-3xl font-bold'
+    const img = 'w-full'
     
     return(
         <>
