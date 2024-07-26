@@ -10,7 +10,7 @@ export const getTopScores = async (
     token: string,
 ): Promise<ITopScoresResponse[] | IAPIError> => {
     const response = await api
-        .get('/score/top-scores', {
+        .get('/scores/top-scores', {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

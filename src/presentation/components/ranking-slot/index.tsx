@@ -14,7 +14,7 @@ export function RankingSlot({ username, score, index }: Props) {
 
     return(
         <div className={div}>
-            <p className={p}>{index + 1}º</p>
+            <p className={p}>{index + 4}º</p>
             <img src="/assets/ranking/ranking_icon.svg" alt="person-icon" className={rankingImg} />
             <p className={usernameP}>{username}</p>
             <p className={scoreP}>{score}</p>
