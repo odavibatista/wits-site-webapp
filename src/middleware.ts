@@ -17,6 +17,10 @@ export async function middleware(request: NextRequest) {
   const canActivate = await actions.user.canActivate(token)
 
   if (canActivate) {
+    if (request.nextUrl.pathname === '/admin' && canActivate[1] !== 'admin') {
+      return NextResponse.redirect(baseUrl)
+    }
+
     return request.nextUrl.pathname !== '/'
       ? NextResponse.next()
       : NextResponse.redirect(`${baseUrl}/dashboard`)
@@ -26,5 +30,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/dashboard'],
+  matcher: ['/', '/dashboard', '/admin', '/ranking'],
 }

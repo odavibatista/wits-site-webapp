@@ -3,7 +3,10 @@
 import { getHomeData } from '@/app/api/user/home-data.endpoint'
 import { register } from '@/app/api/user/register.endpoint'
 import { LoginUserSchema, RegisterUserSchema } from '@/presentation/lib/Schemas'
-import { LoginUserFormState, RegisterUserFormState } from '@/presentation/lib/States'
+import {
+  LoginUserFormState,
+  RegisterUserFormState,
+} from '@/presentation/lib/States'
 import { userTypeguard } from '@/server/utils/typeguard'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -94,5 +97,9 @@ export async function create(
 
 export async function canActivate(token: string) {
   const response = await getHomeData(token)
-  return userTypeguard.isHomeDataResponse(response)
+  if (userTypeguard.isHomeDataResponse(response)) {
+    return [true, response.user.role]
+  } else {
+    return [false, null]
+  }
 }
