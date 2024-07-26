@@ -1,4 +1,5 @@
 import { IAPIError } from '@/app/api/api'
+import { IBrowseCoursesResponse } from '@/app/api/course/browse-courses.endpoint'
 import { IHomeDataResponse } from '@/app/api/user/home-data.endpoint'
 import { ILoginResponse } from '@/app/api/user/login.endpoint'
 import { IRegisterResponse } from '@/app/api/user/register.endpoint'
@@ -20,4 +21,11 @@ export const userTypeguard = {
   isHomeDataResponse: (
     res: IHomeDataResponse | IAPIError,
   ): res is IHomeDataResponse => (res as IHomeDataResponse).user !== undefined,
+}
+
+export const courseTypeguard = {
+  isBrowseCoursesResponse: (
+    res: IBrowseCoursesResponse[] | IAPIError,
+  ): res is IBrowseCoursesResponse[] =>
+    (res as IBrowseCoursesResponse[]) !== undefined,
 }
