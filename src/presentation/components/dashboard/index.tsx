@@ -1,15 +1,21 @@
 'use client'
 
 import { useHomeData } from "@/app/(private-routes)/provider-home-data"
-import { BtnBlur, BtnDefault } from "../button"
+import { BtnBlur } from "../button"
 import { getHomeData, IHomeDataResponse } from "@/app/api/user/home-data.endpoint"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { browseCourses, IBrowseCoursesResponse } from "../../../app/api/course/browse-courses.endpoint"
 
 const DashboardUser = () => {
     const [users, setUsers] = useState<IHomeDataResponse>()
     const [isUsersLoading, setIsUsersLoading] = useState<boolean>(false)
+    const [courses, setCourses] = useState<IBrowseCoursesResponse[]>([])
+    const [isCoursesLoading, setCoursesLoading] = useState<boolean>(false)
+  
     const { token } = useHomeData()
+
+    const user = useHomeData()
 
     useEffect(() => {
         (async () => {
@@ -23,6 +29,20 @@ const DashboardUser = () => {
             }
         })();
     }, []);
+
+    useEffect(() => {
+        (async () => {
+          const data = await browseCourses(user.token, 1);
+    
+          if ("status" in data) {
+            setCoursesLoading(false);
+          } else {
+            setCourses(data);
+            setCoursesLoading(false);
+          }
+        })();
+      }, []);
+      
     return (
         <>
             <section className="h-[700px] w-full -mt-10 flex items-center justify-center">
@@ -42,10 +62,12 @@ const DashboardUser = () => {
                         <h2 className="text-xl md:text-2xl lg:text-3xl text-center">Acesse agora mesmo e continue a <span className="text-custom-gradient uppercase">evoluir!</span></h2>
                         <p className="text-lg text-center md:text-2xl">Escolha seu próximo desafio</p>
                         <div className="flex flex-col items-center justify-center md:grid md:grid-cols-2 gap-3">
-                            <BtnBlur title="Aritmética I" className="w-full" />
-                            <BtnBlur title="Aritmética II" className="w-full" />
-                            <BtnBlur title="Lógica I" className="w-full" />
-                            <BtnBlur title="Lógica II" className="w-full" />
+                        {courses &&
+                            courses?.map((course) => {
+                                return (
+                                    <BtnBlur key={course.id_course} title={course.course_name} className="w-full" />
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

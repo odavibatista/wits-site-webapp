@@ -44,4 +44,18 @@ export default function CoursePage ({ params }: DynamicRoute)  {
           }
         })();
       }, [courseId]);
+
+      return(
+            <main>
+                <section>
+                    <h1>
+                        {course?.course_name}
+                    </h1>
+                    <p>
+                        {course?.id_course}
+                    </p>
+                    <button onClick={() => handleAnswer('answer')}>Responder</button>
+                </section>
+            </main>
+      )
 }

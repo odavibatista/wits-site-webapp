@@ -16,7 +16,7 @@ const Modal = ({ modal, openCloseModal }: ModalProps) => {
 
   const modalStyles = {
     div1: 'bg-modal',
-    div2: 'modal',
+    div2: 'modal bg-slate-900',
     p: 'message'
   }
 
