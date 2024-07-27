@@ -10,9 +10,10 @@ export interface IBrowseCoursesResponse {
 
 export const browseCourses = async (
   token: string,
+  page: string | null,
 ): Promise<IBrowseCoursesResponse[] | IAPIError> => {
   const response = await api
-    .get('/courses/browse', {
+    .get(`/courses/browse?page=${page ?? '1'}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',

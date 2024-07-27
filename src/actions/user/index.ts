@@ -2,7 +2,6 @@
 
 import { getHomeData } from '@/app/api/user/home-data.endpoint'
 import { register } from '@/app/api/user/register.endpoint'
-import { LoginUserSchema, RegisterUserSchema } from '@/presentation/lib/Schemas'
 import {
   LoginUserFormState,
   RegisterUserFormState,
@@ -11,12 +10,13 @@ import { userTypeguard } from '@/server/utils/typeguard'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { login as loginRouteHandler } from '@/app/api/user/login.endpoint'
+import { AuthSchema } from '@/presentation/lib/Schemas'
 
 export async function login(
   formState: LoginUserFormState,
   formData: FormData,
 ): Promise<LoginUserFormState> {
-  const parsed = LoginUserSchema.safeParse({
+  const parsed = AuthSchema.login.safeParse({
     username: formData.get('username'),
     password: formData.get('password'),
   })
@@ -56,7 +56,7 @@ export async function create(
   formState: RegisterUserFormState,
   formData: FormData,
 ): Promise<RegisterUserFormState> {
-  const parsed = RegisterUserSchema.safeParse({
+  const parsed = AuthSchema.register.safeParse({
     name: formData.get('name'),
     email: formData.get('email'),
     password: formData.get('password'),

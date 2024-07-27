@@ -1,20 +1,20 @@
 import api, { IAPIError } from '../api'
 
+export interface IActivity {
+  id_activity: number
+  question: string
+  option_1: string
+  option_2: string
+  option_3: string
+  option_4: string
+  correct_answer: string
+}
+
 export interface ICourseInfoResponse {
   id_course: number
   course_name: string
   points_worth: number
-  activities: [
-    {
-      id_activity: number
-      question: string
-      option_1: string
-      option_2: string
-      option_3: string
-      option_4: string
-      correct_answer: string
-    },
-  ]
+  activities: IActivity[]
   user_concluded_course: boolean
   concluded_at: string | null
   created_at: string
