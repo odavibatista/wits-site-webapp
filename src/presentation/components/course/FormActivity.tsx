@@ -30,7 +30,7 @@ export function FormActivity({
   }
 
   return (
-    <form action={action}>
+    <form action={action} className="my-6">
       <input type="hidden" name="courseId" value={courseId} />
       <input type="hidden" name="activityId" value={activity.id_activity} />
       <input type="hidden" name="correctAnswer" value={correctAnswer ?? ''} />

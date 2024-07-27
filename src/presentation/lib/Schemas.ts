@@ -63,7 +63,24 @@ export const CourseSchema = {
 
 // Atividades
 export const ActivitySchema = {
-  create: z.object({}),
+  create: z.object({
+    courseId: z
+      .string()
+      .refine(
+        (val) => {
+          const parsed = Number(val)
+          return !isNaN(parsed) && parsed > 0
+        },
+        { message: 'ID inválido' },
+      )
+      .transform((val) => Number(val)),
+    question: z.string().min(1, 'Informe o enunciado'),
+    option1: z.string().min(1, 'Informe a opção A'),
+    option2: z.string().min(1, 'Informe a opção B'),
+    option3: z.string().min(1, 'Informe a opção C'),
+    option4: z.string().min(1, 'Informe a opção D'),
+    correctAnswer: z.string().min(1, 'Informe a resposta correta'),
+  }),
   update: z.object({
     courseId: z
       .string()
@@ -72,7 +89,7 @@ export const ActivitySchema = {
           const parsed = Number(val)
           return !isNaN(parsed) && parsed > 0
         },
-        { message: 'A pontuação deve ser um número maior que zero' },
+        { message: 'ID inválido' },
       )
       .transform((val) => Number(val)),
     activityId: z
@@ -82,7 +99,7 @@ export const ActivitySchema = {
           const parsed = Number(val)
           return !isNaN(parsed) && parsed > 0
         },
-        { message: 'A pontuação deve ser um número maior que zero' },
+        { message: 'ID inválido' },
       )
       .transform((val) => Number(val)),
     question: z.string().min(1, 'Informe o enunciado'),

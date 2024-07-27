@@ -1,6 +1,7 @@
 import { getCourseInfo } from '@/app/api/course/get-course-info.endpoint'
+import { Breadcrumb } from '@/presentation/components/breadcrumb'
 import { FormActivity } from '@/presentation/components/course/FormActivity'
-import { courseTypeguard } from '@/server/utils/typeguard'
+import { isApiError } from '@/server/utils/typeguard'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { use } from 'react'
@@ -17,8 +18,7 @@ export default function ActivityIdPage({
   if (!token) redirect(`/admin/cursos/${courseId}`)
 
   const res = use(getCourseInfo(token, Number(courseId)))
-  if (!courseTypeguard.isCourseInfoResponse(res))
-    return redirect(`/admin/cursos/${courseId}`)
+  if (isApiError(res)) return redirect(`/admin/cursos/${courseId}`)
 
   const activityInfo = res.activities.find(
     (item) => item.id_activity === Number(activityId),
@@ -26,9 +26,18 @@ export default function ActivityIdPage({
   if (!activityInfo) return redirect(`/admin/cursos/${courseId}`)
 
   return (
-    <div>
-      <h1 className="my-5 text-2xl opacity-90">Editar Atividade</h1>
+    <>
+      <Breadcrumb
+        paths={[
+          { href: '/admin/cursos', label: 'Cursos' },
+          { href: `/admin/cursos/${params.courseId}`, label: 'Editar curso' },
+          {
+            href: `/admin/cursos/${params.courseId}/${params.activityId}`,
+            label: 'Editar atividade',
+          },
+        ]}
+      />
       <FormActivity activity={activityInfo} courseId={courseId} />
-    </div>
+    </>
   )
 }

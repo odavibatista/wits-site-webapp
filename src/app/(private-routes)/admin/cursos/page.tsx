@@ -5,7 +5,6 @@ import {
   IBrowseCoursesResponse,
 } from '@/app/api/course/browse-courses.endpoint'
 import { useHomeData } from '../../provider-home-data'
-import { courseTypeguard } from '@/server/utils/typeguard'
 import React, { useEffect, useState } from 'react'
 import { Loader2, PenSquareIcon, X } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
@@ -16,6 +15,8 @@ import {
 } from '@/app/api/course/get-course-info.endpoint'
 import { toast } from 'sonner'
 import { actions } from '@/actions'
+import { isApiError } from '@/server/utils/typeguard'
+import { Breadcrumb } from '@/presentation/components/breadcrumb'
 
 export default function CoursesPage() {
   const { token } = useHomeData()
@@ -29,13 +30,13 @@ export default function CoursesPage() {
     const fetchData = async () => {
       if (!courses) {
         const res = await browseCourses(token, page)
-        if (courseTypeguard.isBrowseCoursesResponse(res)) {
+        if (!isApiError(res)) {
           setCourses(res)
         }
       }
       if (courseId) {
         const res = await getCourseInfo(token, courseId)
-        if (courseTypeguard.isCourseInfoResponse(res)) {
+        if (!isApiError(res)) {
           setCourse(res)
         }
       }
@@ -51,31 +52,42 @@ export default function CoursesPage() {
     )
 
   return (
-    <div className="flex flex-col-reverse gap-5 xl:flex-row">
-      {/* Cursos */}
-      <div className="my-5 w-full min-w-[50vw] xl:max-w-3xl">
-        <h1 className="bg-slate-800 p-2 text-lg lg:text-2xl">Título</h1>
-        {renderCourses(courses, setCourseId)}
-      </div>
-
-      {/* Detalhes do curso */}
-      {course && (
-        <div className="m-5 mx-auto h-fit min-w-[56vw] flex-1 bg-zinc-500 p-3 lg:min-w-fit">
-          <div className="relative">
-            <p className="w-full border-b border-zinc-400 pb-2.5 font-firaMono lg:text-2xl">
-              Detalhes do curso
-            </p>
-            <X
-              onClick={() => setCourse(null)}
-              className="absolute right-0 top-0 cursor-pointer"
-              size={20}
-            />
-          </div>
-
-          {renderCourseDetails(course)}
+    <>
+      <Breadcrumb paths={[{ href: '/admin/cursos', label: 'Cursos' }]} />
+      <div className="flex flex-col-reverse gap-5 xl:flex-row">
+        {/* Cursos */}
+        <div className="my-5 w-full min-w-[50vw] xl:max-w-3xl">
+          <h1 className="mb-2.5 bg-slate-800 p-2 text-lg lg:text-2xl">
+            Visualizar
+          </h1>
+          <Link
+            href="/admin/cursos/novo"
+            className="bg-custom-gradient absolute right-5 top-3 my-1.5 max-w-sm rounded-md border p-2 text-sm transition duration-300 active:scale-95 md:text-base"
+          >
+            Adicionar
+          </Link>
+          {renderCourses(courses, setCourseId)}
         </div>
-      )}
-    </div>
+
+        {/* Detalhes do curso */}
+        {course && (
+          <div className="m-5 mx-auto h-fit min-w-[56vw] flex-1 bg-zinc-500 p-3 lg:min-w-fit">
+            <div className="relative">
+              <p className="w-full border-b border-zinc-400 pb-2.5 font-firaMono lg:text-2xl">
+                Detalhes do curso
+              </p>
+              <X
+                onClick={() => setCourse(null)}
+                className="absolute right-0 top-0 cursor-pointer"
+                size={20}
+              />
+            </div>
+
+            {renderCourseDetails(course)}
+          </div>
+        )}
+      </div>
+    </>
   )
 }
 
@@ -84,7 +96,15 @@ function renderCourses(
   setCourseId: (course: number) => void,
 ) {
   return courses.length === 0 ? (
-    <div className="my-5">Nenhum curso cadastrado</div>
+    <div className="my-5 flex flex-col">
+      <p className="text-center text-lg">Nenhum curso cadastrado</p>
+      <Link
+        href="/admin/cursos/novo"
+        className="bg-custom-gradient mx-auto my-6 max-w-sm rounded-md border p-2 transition duration-300 active:scale-95"
+      >
+        Adicione seu primeiro curso
+      </Link>
+    </div>
   ) : (
     <>
       {courses

@@ -6,11 +6,11 @@ import {
   LoginUserFormState,
   RegisterUserFormState,
 } from '@/presentation/lib/States'
-import { userTypeguard } from '@/server/utils/typeguard'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { login as loginRouteHandler } from '@/app/api/user/login.endpoint'
 import { AuthSchema } from '@/presentation/lib/Schemas'
+import { isApiError } from '@/server/utils/typeguard'
 
 export async function login(
   formState: LoginUserFormState,
@@ -33,7 +33,7 @@ export async function login(
 
     const res = await loginRouteHandler(userDTO)
 
-    if (userTypeguard.isLoginResponse(res)) {
+    if (!isApiError(res)) {
       cookies().set('wits-app-session', res.token, {
         path: '/',
         httpOnly: true,
@@ -76,7 +76,7 @@ export async function create(
 
     const res = await register(data)
 
-    if (userTypeguard.isRegisterResponse(res)) {
+    if (!isApiError(res)) {
       cookies().set('wits-app-session', res.token, {
         path: '/',
         httpOnly: true,
@@ -97,7 +97,7 @@ export async function create(
 
 export async function canActivate(token: string) {
   const response = await getHomeData(token)
-  if (userTypeguard.isHomeDataResponse(response)) {
+  if (!isApiError(response)) {
     return [true, response.user.role]
   } else {
     return [false, null]
