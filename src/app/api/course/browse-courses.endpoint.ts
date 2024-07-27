@@ -10,9 +10,10 @@ export interface IBrowseCoursesResponse {
 
 export const browseCourses = async (
     token: string,
+    skip: number,
 ): Promise<IBrowseCoursesResponse[] | IAPIError> => {
     const response = await api
-        .get('/course/browse-courses', {
+        .get(`/courses/browse?page=${skip}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

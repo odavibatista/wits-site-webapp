@@ -26,7 +26,7 @@ export default function RankingPage ()  {
         (async () => {
           const data = await getTopScores(token);
     
-          if ("status" in data) {
+          if ("statusCode" in data) {
             setIsUsersLoading(false);
           } else {
             setUsers(data);
