@@ -18,21 +18,11 @@ export default function CoursePage ({ params }: DynamicRoute)  {
 
     const { modal, setModal, openCloseModal } = useModal();
 
-    const handleAnswer = async (answer: string) => {
-        const response = await answerActivity(token, courseId, {
-            answer
-        });
-
-        if ('status' in response) setModal({ message: response.message, type: 'error' });
-        
-        setModal({ message: 'Resposta correta!', type: 'success' });
-    }
-
     useEffect(() => {
         (async () => {
           const data = await getCourseInfo(token, courseId);
     
-          if ("status" in data) {
+          if ("statusCode" in data) {
             setIsCourseLoading(false);
             setModal({ message: data.message, type: "error" });
           } else {
@@ -54,7 +44,6 @@ export default function CoursePage ({ params }: DynamicRoute)  {
                     <p>
                         {course?.id_course}
                     </p>
-                    <button onClick={() => handleAnswer('answer')}>Responder</button>
                 </section>
             </main>
       )

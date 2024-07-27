@@ -11,7 +11,7 @@ interface ModalProps {
   openCloseModal: () => void;
 }
 
-const Modal = ({ modal, openCloseModal }: ModalProps) => {
+const UserModal = ({ modal, openCloseModal }: ModalProps) => {
   const { message, type } = modal;
 
   const modalStyles = {
@@ -38,4 +38,4 @@ const Modal = ({ modal, openCloseModal }: ModalProps) => {
   );
 };
 
-export default Modal;
+export default UserModal;

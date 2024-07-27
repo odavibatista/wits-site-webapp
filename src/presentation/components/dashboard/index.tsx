@@ -21,7 +21,7 @@ const DashboardUser = () => {
         (async () => {
             const data = await getHomeData(token);
 
-            if ("status" in data) {
+            if ("statusCode" in data) {
                 setIsUsersLoading(false);
             } else {
                 setUsers(data);
@@ -34,7 +34,7 @@ const DashboardUser = () => {
         (async () => {
           const data = await browseCourses(user.token, 1);
     
-          if ("status" in data) {
+          if ("statusCode" in data) {
             setCoursesLoading(false);
           } else {
             setCourses(data);
@@ -62,12 +62,16 @@ const DashboardUser = () => {
                         <h2 className="text-xl md:text-2xl lg:text-3xl text-center">Acesse agora mesmo e continue a <span className="text-custom-gradient uppercase">evoluir!</span></h2>
                         <p className="text-lg text-center md:text-2xl">Escolha seu próximo desafio</p>
                         <div className="flex flex-col items-center justify-center md:grid md:grid-cols-2 gap-3">
-                        {courses &&
-                            courses?.map((course) => {
-                                return (
-                                    <BtnBlur key={course.id_course} title={course.course_name} className="w-full" />
-                                );
-                            })}
+                            {
+                                courses &&
+                                courses?.map((course) => {
+                                    return (
+                                        <Link href={`/course/${course.id_course}`} key={course.id_course}>
+                                            <BtnBlur key={course.id_course} title={course.course_name} className="w-full" />
+                                        </Link>
+                                    );
+                                })
+                            }
                         </div>
                     </div>
                 </div>
