@@ -21,6 +21,10 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(baseUrl)
     }
 
+    if (canActivate[1] === 'admin' && request.nextUrl.pathname === '/') {
+      return NextResponse.redirect(`${baseUrl}/admin`)
+    }
+
     return request.nextUrl.pathname !== '/'
       ? NextResponse.next()
       : NextResponse.redirect(`${baseUrl}/dashboard`)
@@ -30,5 +34,12 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/dashboard', '/admin', '/ranking'],
+  matcher: [
+    '/',
+    '/admin/:path*',
+    '/course/:path*',
+    '/dashboard/:path*',
+    '/profile/:path*',
+    '/ranking/:path*',
+  ],
 }

@@ -8,7 +8,6 @@ import { SixthFold } from '@/presentation/components/landing-page/SixthFold'
 import { ThirdFold } from '@/presentation/components/landing-page/ThirdFold'
 import { Suspense } from 'react'
 
-
 export default function Home() {
   return (
     <main className="text-neutral-100">

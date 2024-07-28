@@ -4,7 +4,6 @@ import {
   browseCourses,
   IBrowseCoursesResponse,
 } from '@/app/api/course/browse-courses.endpoint'
-import { useHomeData } from '../../provider-home-data'
 import React, { useEffect, useState } from 'react'
 import { Loader2, PenSquareIcon, X } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
@@ -17,6 +16,7 @@ import { toast } from 'sonner'
 import { actions } from '@/actions'
 import { isApiError } from '@/server/utils/typeguard'
 import { Breadcrumb } from '@/presentation/components/breadcrumb'
+import { useHomeData } from '@/app/(private-routes)/provider-home-data'
 
 export default function CoursesPage() {
   const { token } = useHomeData()
