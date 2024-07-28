@@ -1,18 +1,21 @@
 'use client'
 
 import { actions } from '@/actions'
+import { useModal } from '@/presentation/hooks/useModal'
 import {
   ChevronLeft,
   ChevronRight,
   GraduationCap,
   Home,
   LogOut,
+  Undo2,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { toast } from 'sonner'
+import UserModal from '../modal'
 
 export function NavbarAdmin() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -68,6 +71,8 @@ export function NavbarAdmin() {
     )
   }
 
+  const { modal, setModal, openCloseModal } = useModal()
+
   return (
     <div
       className={`flex flex-col items-center bg-neutral-800 px-1.5 py-4 ${isOpen ? 'w-56' : 'w-12'}`}
@@ -75,6 +80,7 @@ export function NavbarAdmin() {
       <ButtonToggle />
       <Item href="/admin" label="Página inicial" Icon={Home} />
       <Item href="/admin/cursos" label="Cursos" Icon={GraduationCap} />
+      <Item href="/dashboard" label="Dashboard" Icon={Undo2} />
       <button
         onClick={() =>
           toast.promise(actions.user.logout, {
@@ -89,6 +95,9 @@ export function NavbarAdmin() {
         <LogOut />
         {isOpen && <span>Finalizar sessão</span>}
       </button>
+      {modal?.message !== '' && (
+        <UserModal modal={modal} openCloseModal={openCloseModal} />
+      )}
     </div>
   )
 }

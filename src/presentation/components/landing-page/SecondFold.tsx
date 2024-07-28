@@ -9,7 +9,7 @@ export function SecondFold() {
         <span className="text-custom-gradient">25 milhões</span> de alunos e
         comece uma carreira que você vai adorar.
       </h2>
-      <section className="flex justify-between gap-5 overflow-x-scroll px-3 md:px-12">
+      <section className="no-scrollbar flex justify-between gap-5 overflow-x-scroll px-3 md:px-12">
         {Persons.filter((i) => i.type === 'testimony').map((person) => (
           <CardTestimony
             key={person.id}

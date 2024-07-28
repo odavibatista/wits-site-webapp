@@ -35,7 +35,9 @@ const DashboardUser = () => {
           </h2>
           <p className="text-center">
             Score atual do Usuário:{' '}
-            <span className="text-custom-gradient block">{score}</span>
+            <span className="text-custom-gradient my-5 block text-4xl">
+              {score}
+            </span>
           </p>
           <div className="flex flex-col items-center gap-5">
             <p className="text-center">
@@ -61,7 +63,12 @@ const DashboardUser = () => {
                 .map((course) => {
                   return (
                     <Link
-                      href={`/course/${course.id_course}`}
+                      // href={`/course/${course.id_course}`}
+                      href={{
+                        query: {
+                          course: encodeURIComponent(JSON.stringify(course)),
+                        },
+                      }}
                       key={course.id_course}
                     >
                       <BtnBlur
