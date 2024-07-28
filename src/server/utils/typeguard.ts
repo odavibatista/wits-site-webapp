@@ -1,23 +1,25 @@
+import { IEditActivityResponse } from '@/app/api/activities/edit-activity.endpoint'
 import { IAPIError } from '@/app/api/api'
+import { IBrowseCoursesResponse } from '@/app/api/course/browse-courses.endpoint'
+import { IEditCourseResponse } from '@/app/api/course/edit-course.endpoint'
+import { ICourseInfoResponse } from '@/app/api/course/get-course-info.endpoint'
 import { IHomeDataResponse } from '@/app/api/user/home-data.endpoint'
 import { ILoginResponse } from '@/app/api/user/login.endpoint'
 import { IRegisterResponse } from '@/app/api/user/register.endpoint'
 
-export const userTypeguard = {
-  // Login de usuário
-  isLoginResponse: (res: ILoginResponse | IAPIError): res is ILoginResponse =>
-    (res as ILoginResponse).user !== undefined &&
-    (res as ILoginResponse).token !== undefined,
+type CatalogedReturns =
+  | ILoginResponse
+  | IRegisterResponse
+  | IHomeDataResponse
+  | IBrowseCoursesResponse
+  | IBrowseCoursesResponse[]
+  | ICourseInfoResponse
+  | IEditCourseResponse
+  | IEditActivityResponse
 
-  // Registro de usuário
-  isRegisterResponse: (
-    res: IRegisterResponse | IAPIError,
-  ): res is IRegisterResponse =>
-    (res as IRegisterResponse).user !== undefined &&
-    (res as IRegisterResponse).token !== undefined,
-
-  // Informações do usuário
-  isHomeDataResponse: (
-    res: IHomeDataResponse | IAPIError,
-  ): res is IHomeDataResponse => (res as IHomeDataResponse).user !== undefined,
-}
+export const isApiError = (
+  res: CatalogedReturns | IAPIError,
+): res is IAPIError =>
+  (res as IAPIError) !== undefined &&
+  (res as IAPIError).status !== undefined &&
+  (res as IAPIError).message !== undefined

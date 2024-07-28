@@ -1,4 +1,4 @@
-import HeaderNoAuth from "@/presentation/components/header-no-auth"
+import HeaderNoAuth from '@/presentation/components/header-no-auth'
 
 export default function PublicLayout({
   children,
