@@ -1,7 +1,7 @@
 export default function AdminPage() {
   return (
-    <div className="text-neutral-50">
-      <h1>Admin page</h1>
-    </div>
+    <>
+      <h1 className="text-2xl opacity-90">Painel do Administrador</h1>
+    </>
   )
 }

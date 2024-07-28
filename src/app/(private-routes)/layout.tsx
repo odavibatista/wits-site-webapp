@@ -1,7 +1,7 @@
 import api from '@/app/api/api'
 import { cookies } from 'next/headers'
 import { HomeDataProvider } from './provider-home-data'
-import { userTypeguard } from '@/server/utils/typeguard'
+import { isApiError } from '@/server/utils/typeguard'
 
 export default async function PrivateLayout({
   children,
@@ -18,7 +18,7 @@ export default async function PrivateLayout({
     },
   })
 
-  if (!userTypeguard.isHomeDataResponse(res.data)) return
+  if (isApiError(res.data)) return
 
   const userDataWithToken = { ...res.data.user, token }
 

@@ -4,6 +4,7 @@ export { BtnBlur } from './BtnBlur'
 export { BtnDefault } from './BtnDefault'
 export { BtnPrimary } from './BtnPrimary'
 export { BtnPlatform } from './BtnPlatform'
+export { BtnDeleteActivity } from './BtnDeleteActivity'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
