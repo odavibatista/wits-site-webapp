@@ -47,7 +47,7 @@ export default function CoursePage ({ params }: DynamicRoute)  {
                     </h1>
                     <div className="flex flex-col gap-20">
                         {
-                          course && course.activities.map((activity) => {
+                          course && course.user_concluded_course === false && course.activities.map((activity) => {
                               return (
                                 <CourseQuestion
                                   id_activity={activity.id_activity}
