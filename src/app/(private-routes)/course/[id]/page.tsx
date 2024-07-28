@@ -6,6 +6,9 @@ import { getCourseInfo, ICourseInfoResponse } from "../../../api/course/get-cour
 import { useHomeData } from "../../provider-home-data";
 import { useModal } from "../../../../presentation/hooks/useModal";
 import { answerActivity } from "../../../api/activities/answer-activity.endpoint";
+import CourseQuestion from "../../../../presentation/components/course/CourseQuestion";
+import HeaderAuth from "../../../../presentation/components/header-auth";
+import { Footer } from "../../../../presentation/components/landing-page/Footer";
 
 export default function CoursePage ({ params }: DynamicRoute)  {
     const [course, setCourse] = useState<ICourseInfoResponse>()
@@ -37,14 +40,31 @@ export default function CoursePage ({ params }: DynamicRoute)  {
 
       return(
             <main>
-                <section>
-                    <h1>
+              <HeaderAuth />
+                <section className="flex flex-col gap-10 py-20">
+                    <h1 className="text-custom-gradient text-3xl text-center uppercase">
                         {course?.course_name}
                     </h1>
-                    <p>
-                        {course?.id_course}
-                    </p>
+                    <div className="flex flex-col gap-20">
+                        {
+                          course && course.activities.map((activity) => {
+                              return (
+                                <CourseQuestion
+                                  id_activity={activity.id_activity}
+                                  question={activity.question}
+                                  option_1={activity.option_1}
+                                  option_2={activity.option_2}
+                                  option_3={activity.option_3}
+                                  option_4={activity.option_4}
+                                  correct_answer={activity.correct_answer}
+                                  answer=""
+                                />
+                              );
+                          })
+                        }
+                    </div>
                 </section>
+                <Footer />
             </main>
       )
 }

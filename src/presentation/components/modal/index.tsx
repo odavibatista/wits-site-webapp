@@ -17,7 +17,7 @@ const UserModal = ({ modal, openCloseModal }: ModalProps) => {
   const modalStyles = {
     div1: 'bg-modal',
     div2: 'modal bg-slate-900',
-    p: 'message'
+    p: 'message text-slate-100'
   }
 
   const handleClick = (): void => {
@@ -29,7 +29,7 @@ const UserModal = ({ modal, openCloseModal }: ModalProps) => {
       <div className={modalStyles.div2}>
         <p className={modalStyles.p}>{message}</p>
         <div>
-          <Button onClick={handleClick}>
+          <Button onClick={handleClick} className="text-slate-100 border-slate-100">
             {modal.buttonText || "Ok"}
           </Button>
         </div>
