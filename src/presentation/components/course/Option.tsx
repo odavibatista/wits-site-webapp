@@ -26,9 +26,11 @@ export default function Option ({ id_activity, option, index }: OptionProps)  {
     }
 
     return(
-        <div className="flex flex-row cursor-pointer items-center justify-items-center bg-slate-800 px-8 p-4 rounded-lg w-[100%] h-12 lg:h-14" onClick={async() => handleAnswer(`4`)} >
-            <h1>
-                {index}) {option}
+        <div className="flex flex-row cursor-pointer items-center justify-items-center bg-slate-800 px-8 p-4 rounded-lg w-[100%] h-12 lg:h-14" onClick={async() => handleAnswer(index)} >
+            <h1 className="text-violet-500">
+                {
+                    index === '1' ? 'A' : index === '2' ? 'B' : index === '3' ? 'C' : 'D'
+                }) {option}
             </h1>
 
             {modal?.message !== "" && (
