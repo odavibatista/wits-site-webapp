@@ -57,6 +57,7 @@ export default function CoursePage ({ params }: DynamicRoute)  {
                                   option_3={activity.option_3}
                                   option_4={activity.option_4}
                                   correct_answer={activity.correct_answer}
+                                  answer=""
                                 />
                               );
                           })

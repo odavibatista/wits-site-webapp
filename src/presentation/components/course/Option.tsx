@@ -7,6 +7,7 @@ export interface OptionProps    {
     id_activity: number
     option: string
     index: string
+    onClick?: () => void
 }
 
 export default function Option ({ id_activity, option, index }: OptionProps)  {

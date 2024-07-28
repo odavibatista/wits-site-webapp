@@ -10,18 +10,27 @@ export interface CourseQuestionProps {
     option_3: string
     option_4: string
     correct_answer: string
+    answer: string
 }
 
-export default function CourseQuestion({ id_activity, question, option_1, option_2, option_3, option_4, correct_answer }: CourseQuestionProps) {
+export default function CourseQuestion({ id_activity, question, option_1, option_2, option_3, option_4, correct_answer, answer }: CourseQuestionProps) {
+    function setAnswer (newAnswer: string) {
+        answer = newAnswer
+
+        console.log(answer)
+    }
+
     return(
-        <div className="flex flex-col gap-8">
-        <div className="bg-slate-700 p-4 mb-8 rounded-lg text-slate-100">
-            {question}
-        </div>
-            <Option id_activity={id_activity} option={option_1} index="1" />
-            <Option id_activity={id_activity} option={option_2} index="2" />
-            <Option id_activity={id_activity} option={option_3} index="3" />
-            <Option id_activity={id_activity} option={option_4} index="4" />
-        </div>
+        answer !== correct_answer ? (
+            <div className="flex flex-col gap-8">
+                <div className="bg-slate-700 p-4 mb-8 rounded-lg text-slate-100">
+                    {question}
+                </div>
+                    <Option id_activity={id_activity} option={option_1} index="1" />
+                    <Option id_activity={id_activity} option={option_2} index="2"  />
+                    <Option id_activity={id_activity} option={option_3} index="3" />
+                    <Option id_activity={id_activity} option={option_4} index="4" />
+            </div>
+            ) : null
     )
 }
