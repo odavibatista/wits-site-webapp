@@ -24,7 +24,7 @@ const HeaderAuth = () => {
   return (
     <div className="relative">
       <nav className="flex items-center justify-between py-5">
-        <Link href="/">
+        <Link href="/dashboard">
           <img
             src="/assets/LogotipoGradient.svg"
             alt="logo Wits"
@@ -47,7 +47,6 @@ const HeaderAuth = () => {
           className="absolute right-0 top-[70px] z-50 flex h-28 w-36 flex-col items-center justify-evenly rounded-lg bg-neutral-900 text-sm text-white opacity-90 shadow-lg shadow-secondary-900 lg:text-base"
         >
           <MenuItem href="/dashboard" label="Dashboard" />
-          {/* <MenuItem href="/profile" label="Meus dados" /> */}
           {role === 'admin' && <MenuItem href="/admin" label="Painel Adm" />}
           <button
             onClick={() =>
