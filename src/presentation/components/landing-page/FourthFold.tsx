@@ -8,7 +8,7 @@ export function FourthFold() {
   const { replace } = useRouter()
 
   return (
-    <div className="lp-section">
+    <div className="lp-section relative">
       <section>
         <h2 className="text-custom-gradient lp-title">Aulas gamificadas</h2>
         <p className="mx-auto max-w-5xl text-center md:text-xl">
@@ -31,6 +31,7 @@ export function FourthFold() {
           }
         />
       </div>
+      <div className="absolute right-28 top-0 -z-50 h-[50%] w-[30%] rotate-45 bg-secondary-800 opacity-20 blur-3xl" />
     </div>
   )
 }
