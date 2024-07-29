@@ -45,7 +45,7 @@ export default function RankingPage() {
           />
         </div>
         <div className="flex w-full max-w-lg flex-col gap-4 pb-20">
-          {users.map((user, index) => (
+          {users.slice(3).map((user, index) => (
             <RankingSlot
               key={user.id}
               username={user.username}

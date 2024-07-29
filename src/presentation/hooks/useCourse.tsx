@@ -12,6 +12,7 @@ export function useCourse(token: string, courseId: number) {
   const [currentActivityIndex, setCurrentActivityIndex] = useState<number>(0)
   const [points, setPoints] = useState<number>(0)
   const [cookies, setCookie] = useCookies(['witsAppCourseProgress'])
+  const [rightAnswer, setRightAnswer] = useState<number>(0)
 
   useEffect(() => {
     const fetchCourseInfo = async () => {
@@ -30,10 +31,11 @@ export function useCourse(token: string, courseId: number) {
             { path: '/' },
           )
         } else {
+          console.log(points)
           setCurrentActivityIndex(
             cookies.witsAppCourseProgress.currentActivityIndex,
           )
-          setPoints(cookies.witsAppCourseProgress.points)
+          // setPoints(cookies.witsAppCourseProgress.points)
         }
       }
     }
@@ -50,6 +52,7 @@ export function useCourse(token: string, courseId: number) {
     if (selectedOption === currentActivity.correct_answer) {
       const newPoints = points + pointsPerActivity
       setPoints(newPoints)
+      setRightAnswer((rightAnswer) => rightAnswer + 1)
       setCookie(
         'witsAppCourseProgress',
         {
@@ -59,6 +62,8 @@ export function useCourse(token: string, courseId: number) {
         { path: '/' },
       )
     }
+    console.log(cookies.witsAppCourseProgress)
+    console.log(points)
 
     const newIndex = currentActivityIndex + 1
     setCurrentActivityIndex(newIndex)
@@ -76,6 +81,7 @@ export function useCourse(token: string, courseId: number) {
     course,
     currentActivityIndex,
     points,
+    rightAnswer,
     handleAnswer,
   }
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { answerActivity } from '@/app/api/activities/answer-activity.endpoint'
 import { useCourse } from '@/presentation/hooks/useCourse'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -13,10 +14,8 @@ export function RenderCourseQuestions({
   courseId: number
 }) {
   const { replace } = useRouter()
-  const { course, currentActivityIndex, points, handleAnswer } = useCourse(
-    token,
-    courseId,
-  )
+  const { course, currentActivityIndex, points, rightAnswer, handleAnswer } =
+    useCourse(token, courseId)
 
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
   const [timeLeft, setTimeLeft] = useState(1800)
@@ -44,12 +43,33 @@ export function RenderCourseQuestions({
     )
   }
 
-  if (currentActivityIndex >= course.activities.length) {
+  if (rightAnswer === course.activities.length) {
     return (
       <div className="flex flex-col items-center justify-center py-8 text-neutral-100">
         <span className="text-custom-gradient text-2xl">Curso concluído!</span>
         <span className="my-3">Pontuação total:</span>
         <span className="text-custom-gradient text-4xl">{points}</span>
+        <button
+          onClick={() => replace('/dashboard?exit=true')}
+          className="mt-12 rounded-md bg-neutral-300 p-2 text-neutral-900"
+        >
+          Voltar à página inicial
+        </button>
+      </div>
+    )
+  }
+
+  if (
+    currentActivityIndex === course.activities.length &&
+    rightAnswer < course.activities.length
+  ) {
+    return (
+      <div className="flex flex-col items-center justify-center py-8 text-neutral-100">
+        <span className="text-custom-gradient text-2xl">Quase lá!</span>
+        <span className="my-3">Acertos:</span>
+        <span className="text-custom-gradient text-4xl">
+          {rightAnswer} / {course.activities.length}
+        </span>
         <button
           onClick={() => replace('/dashboard?exit=true')}
           className="mt-12 rounded-md bg-neutral-300 p-2 text-neutral-900"
@@ -66,9 +86,13 @@ export function RenderCourseQuestions({
     setSelectedOption(option)
   }
 
-  const handleConfirmClick = () => {
+  const handleConfirmClick = async () => {
     if (selectedOption) {
       handleAnswer(selectedOption)
+      const res = await answerActivity(token, currentActivity.id_activity, {
+        answer: `${selectedOption}`,
+      })
+      console.log(res)
       setSelectedOption(null)
     }
   }
@@ -93,7 +117,7 @@ export function RenderCourseQuestions({
               ? 'rounded-md bg-neutral-800 p-2'
               : ''
           }
-          onClick={() => handleOptionClick(currentActivity.option_1)}
+          onClick={() => handleOptionClick('1')}
         >
           {currentActivity.option_1}
         </button>
@@ -103,7 +127,7 @@ export function RenderCourseQuestions({
               ? 'rounded-md bg-neutral-800 p-2'
               : ''
           }
-          onClick={() => handleOptionClick(currentActivity.option_2)}
+          onClick={() => handleOptionClick('2')}
         >
           {currentActivity.option_2}
         </button>
@@ -113,7 +137,7 @@ export function RenderCourseQuestions({
               ? 'rounded-md bg-neutral-800 p-2'
               : ''
           }
-          onClick={() => handleOptionClick(currentActivity.option_3)}
+          onClick={() => handleOptionClick('3')}
         >
           {currentActivity.option_3}
         </button>
@@ -123,7 +147,7 @@ export function RenderCourseQuestions({
               ? 'rounded-md bg-neutral-800 p-2'
               : ''
           }
-          onClick={() => handleOptionClick(currentActivity.option_4)}
+          onClick={() => handleOptionClick('4')}
         >
           {currentActivity.option_4}
         </button>

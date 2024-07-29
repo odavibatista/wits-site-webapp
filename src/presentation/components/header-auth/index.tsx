@@ -44,10 +44,10 @@ const HeaderAuth = () => {
           whileInView={{ opacity: 1 }}
           exit={{ x: -300, opacity: 0 }}
           transition={{ duration: 0.75 }}
-          className="absolute right-0 top-[70px] z-50 flex h-40 w-36 flex-col items-center justify-evenly rounded-lg bg-neutral-900 text-sm text-white opacity-90 shadow-lg shadow-secondary-900 lg:text-base"
+          className="absolute right-0 top-[70px] z-50 flex h-28 w-36 flex-col items-center justify-evenly rounded-lg bg-neutral-900 text-sm text-white opacity-90 shadow-lg shadow-secondary-900 lg:text-base"
         >
           <MenuItem href="/dashboard" label="Dashboard" />
-          <MenuItem href="/profile" label="Meus dados" />
+          {/* <MenuItem href="/profile" label="Meus dados" /> */}
           {role === 'admin' && <MenuItem href="/admin" label="Painel Adm" />}
           <button
             onClick={() =>

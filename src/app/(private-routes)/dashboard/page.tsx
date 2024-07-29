@@ -12,9 +12,9 @@ export default function Dashboard() {
   const courseJson = searchParams.get('course')
 
   useEffect(() => {
-    if (courseJson) {
+    if (!course) {
       const decoded: IBrowseCoursesResponse = JSON.parse(
-        decodeURIComponent(courseJson),
+        decodeURIComponent(courseJson as string),
       )
       setCourse(decoded)
     } else {

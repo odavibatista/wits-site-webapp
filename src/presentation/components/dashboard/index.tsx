@@ -17,11 +17,13 @@ const DashboardUser = () => {
   const { username, score, token } = useHomeData()
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await browseCourses(token, '1')
-      if (!isApiError(res)) return setCourses(res)
+    if (!courses) {
+      const fetchData = async () => {
+        const res = await browseCourses(token, '1')
+        if (!isApiError(res)) return setCourses(res)
+      }
+      fetchData()
     }
-    fetchData()
   }, [courses])
 
   return (
@@ -63,7 +65,6 @@ const DashboardUser = () => {
                 .map((course) => {
                   return (
                     <Link
-                      // href={`/course/${course.id_course}`}
                       href={{
                         query: {
                           course: encodeURIComponent(JSON.stringify(course)),
