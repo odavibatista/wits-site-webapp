@@ -1,47 +1,38 @@
+import { captalize } from '@/presentation/lib/Capitalize'
+import Image from 'next/image'
+
 interface Props {
-    username: string
-    score: number
-    ranking: 1 | 2 | 3
+  username: string
+  score: number
+  ranking: number
 }
 
 export function Top3({ username, score, ranking }: Props) {
+  const index = ranking as 0 | 1 | 2
+  const rankingMapping = {
+    0: {
+      src: '/assets/ranking/first_place.svg',
+      positionStyles: 'col-start-2 row-start-1 relative top-3',
+    },
+    1: {
+      src: '/assets/ranking/second_place.svg',
+      positionStyles: 'col-start-1 row-start-1 relative top-12 right-2',
+    },
+    2: {
+      src: '/assets/ranking/third_place.svg',
+      positionStyles: 'col-start-3 row-start-1 relative top-12 left-2',
+    },
+  }
 
-    const div = 'flex flex-col items-center justify-center gap:2 sm:gap-4 w-[80px] sm:w-[155px] md:w-[196px]'
-    const p = 'text-custom-gradient text-[3vw] sm:text-xl md:text-2xl font-bold'
-    const scoreText = 'text-yellow-500 text-md sm:text-2xl md:text-3xl font-bold'
-    const img = 'w-full'
-    
-    return(
-        <>
-            {
-                ranking === 1 && (
-                    <div className={div}>
-                        <p className={p}>{username}</p>
-                        <p className={scoreText}>{score}</p>
-                        <img src="/assets/ranking/first_place.svg" alt="First place" className={img} />
-                    </div>
-                )
-            }
-
-            {
-                ranking === 2 && (
-                    <div className={div}>
-                        <p className={p}>{username}</p>
-                        <p className={scoreText}>{score}</p>
-                        <img src="/assets/ranking/second_place.svg" alt="Second place" className={img} />
-                    </div>
-                )
-            }
-
-            {
-                ranking === 3 && (
-                    <div className={div}>
-                        <p className={p}>{username}</p>
-                        <p className={scoreText}>{score}</p>
-                        <img src="/assets/ranking/third_place.svg" alt="Third place" className={img} />
-                    </div>
-                )
-            }
-        </>
-    )
+  return (
+    <button
+      className={`relative flex flex-col items-center transition duration-300 hover:scale-110 ${rankingMapping[index].positionStyles}`}
+    >
+      <p className="absolute -top-7 truncate text-xl">
+        {captalize(username).split(' ')[0]}
+      </p>
+      <p className="text-3xl text-amber-400">{score}</p>
+      <Image src={rankingMapping[index].src} width={50} height={50} alt="" />
+    </button>
+  )
 }

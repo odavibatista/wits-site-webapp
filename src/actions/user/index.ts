@@ -103,3 +103,9 @@ export async function canActivate(token: string) {
     return [false, null]
   }
 }
+
+export async function logout() {
+  console.log('chamou.')
+  cookies().delete('wits-app-session')
+  redirect('/')
+}

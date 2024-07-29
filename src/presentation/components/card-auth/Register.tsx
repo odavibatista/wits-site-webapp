@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useFormState } from 'react-dom'
 import { toast } from 'sonner'
 import { actions } from '@/actions'
+import { motion } from 'framer-motion'
 import { InputPassword, InputText } from '../input'
 import { InputConfirmPassword } from '../input/InputConfirmPassword'
 import { BtnBlur, BtnDefault } from '../button'
@@ -22,7 +23,13 @@ export function CardRegister() {
 
   return (
     <>
-      <div className="fixed right-0 top-0 z-50 min-h-screen border-l-2 border-neutral-700 bg-neutral-800 p-6 md:min-w-[413px]">
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 100 }}
+        transition={{ duration: 0.5 }}
+        className="fixed right-0 top-0 z-50 min-h-screen border-l-2 border-neutral-700 bg-neutral-800 p-6 md:min-w-[413px]"
+      >
         <ChevronLeft
           onClick={() => replace(pathname, { scroll: false })}
           className="cursor-pointer"
@@ -89,7 +96,7 @@ export function CardRegister() {
             <BtnBlur title="Criar conta" type="submit" className="w-full" />
           </div>
         </form>
-      </div>
+      </motion.div>
       <div
         onClick={() => replace(pathname, { scroll: false })}
         className="fixed left-0 top-0 z-20 min-h-screen w-full bg-neutral-950/80"

@@ -12,6 +12,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export interface PropsBtn extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string
+  Icon?: JSX.ElementType
 }
 
 export function BtnWrapper({ children, className, ...props }: Props) {

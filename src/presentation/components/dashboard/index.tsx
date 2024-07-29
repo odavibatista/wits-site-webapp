@@ -1,84 +1,90 @@
 'use client'
 
-import { useHomeData } from "@/app/(private-routes)/provider-home-data"
-import { BtnBlur } from "../button"
-import { getHomeData, IHomeDataResponse } from "@/app/api/user/home-data.endpoint"
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import { browseCourses, IBrowseCoursesResponse } from "../../../app/api/course/browse-courses.endpoint"
+import { useHomeData } from '@/app/(private-routes)/provider-home-data'
+import { BtnBlur } from '../button'
+import Link from 'next/link'
+import { Trophy } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import {
+  browseCourses,
+  IBrowseCoursesResponse,
+} from '@/app/api/course/browse-courses.endpoint'
+import { isApiError } from '@/server/utils/typeguard'
+import { captalize } from '@/presentation/lib/Capitalize'
 
 const DashboardUser = () => {
-    const [users, setUsers] = useState<IHomeDataResponse>()
-    const [isUsersLoading, setIsUsersLoading] = useState<boolean>(false)
-    const [courses, setCourses] = useState<IBrowseCoursesResponse[]>([])
-    const [isCoursesLoading, setCoursesLoading] = useState<boolean>(false)
-  
-    const { token } = useHomeData()
+  const [courses, setCourses] = useState<IBrowseCoursesResponse[] | null>(null)
+  const { username, score, token } = useHomeData()
 
-    const user = useHomeData()
+  useEffect(() => {
+    if (!courses) {
+      const fetchData = async () => {
+        const res = await browseCourses(token, '1')
+        if (!isApiError(res)) return setCourses(res)
+      }
+      fetchData()
+    }
+  }, [courses])
 
-    useEffect(() => {
-        (async () => {
-            const data = await getHomeData(token);
-
-            if ("statusCode" in data) {
-                setIsUsersLoading(false);
-            } else {
-                setUsers(data);
-                setIsUsersLoading(false);
-            }
-        })();
-    }, []);
-
-    useEffect(() => {
-        (async () => {
-          const data = await browseCourses(user.token, 1);
-    
-          if ("statusCode" in data) {
-            setCoursesLoading(false);
-          } else {
-            setCourses(data);
-            setCoursesLoading(false);
-          }
-        })();
-      }, []);
-      
-    return (
-        <>
-            <section className="h-[700px] w-full -mt-10 flex items-center justify-center">
-                <div className="border border-secondary-600 flex h-3/4 rounded-xl">
-                    <div className="w-1/2 md:w-[34%] flex flex-col items-center justify-between p-3 lg:p-10">
-                        <h2 className="text-lg text-center md:text-2xl lg:text-3xl">Bem vindo <span className="text-custom-gradient uppercase">{users?.user.username}</span></h2>
-                        <p className="text-base text-center md:text-2xl lg:text-2xl">Score atual do Usuário: <span className="text-custom-gradient">{users?.user.score}</span></p>
-                        <div className="flex flex-col items-center gap-5">
-                            <p className="text-base text-center lg:text-lg">Acesse o <span className="text-custom-gradient">RANKING</span> e veja sua posição</p>
-                            <Link href="/ranking">
-                                <BtnBlur title="Ranking" />
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="border border-secondary-600"></div>
-                    <div className="w-1/2 md:w-[66%] flex flex-col items-center justify-between p-3 lg:p-10">
-                        <h2 className="text-xl md:text-2xl lg:text-3xl text-center">Acesse agora mesmo e continue a <span className="text-custom-gradient uppercase">evoluir!</span></h2>
-                        <p className="text-lg text-center md:text-2xl">Escolha seu próximo desafio</p>
-                        <div className="flex flex-col items-center justify-center md:grid md:grid-cols-2 gap-3">
-                            {
-                                courses &&
-                                courses?.map((course) => {
-                                    return (
-                                        <Link href={`/course/${course.id_course}`} key={course.id_course}>
-                                            <BtnBlur key={course.id_course} title={course.course_name} className="w-full" />
-                                        </Link>
-                                    );
-                                })
-                            }
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-        </>
-    )
+  return (
+    <section className="mx-auto rounded-xl bg-neutral-900/40 p-6 text-xl">
+      <div className="grid w-full lg:grid-cols-8">
+        {/* Left */}
+        <div className="lg:col-span-3">
+          <h2 className="text-center">
+            Bem vindo{' '}
+            <span className="text-custom-gradient">{captalize(username)}</span>
+          </h2>
+          <p className="text-center">
+            Score atual do Usuário:{' '}
+            <span className="text-custom-gradient my-5 block text-4xl">
+              {score}
+            </span>
+          </p>
+          <div className="flex flex-col items-center gap-5">
+            <p className="text-center">
+              Acesse o <span className="text-custom-gradient">RANKING</span> e
+              veja sua posição
+            </p>
+            <Link href="/ranking">
+              <BtnBlur title="Ranking" Icon={Trophy} className="min-w-full" />
+            </Link>
+          </div>
+        </div>
+        {/* Right */}
+        <div className="flex flex-col items-center justify-center lg:col-span-5">
+          <h2 className="text-center">
+            Acesse agora mesmo e continue a{' '}
+            <span className="text-custom-gradient font-bold">evoluir!</span>
+          </h2>
+          <p className="text-center">Escolha seu próximo desafio</p>
+          <div className="my-5 grid grid-cols-2 items-center gap-3">
+            {courses &&
+              courses
+                .sort((a, b) => a.course_name.localeCompare(b.course_name))
+                .map((course) => {
+                  return (
+                    <Link
+                      href={{
+                        query: {
+                          course: encodeURIComponent(JSON.stringify(course)),
+                        },
+                      }}
+                      key={course.id_course}
+                    >
+                      <BtnBlur
+                        key={course.id_course}
+                        title={course.course_name}
+                        className="w-full"
+                      />
+                    </Link>
+                  )
+                })}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }
 
 export default DashboardUser

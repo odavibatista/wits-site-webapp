@@ -1,6 +1,6 @@
 export function FirstFold() {
   return (
-    <section className="mt-32 md:my-8 lg:my-20">
+    <section className="relative mt-32 md:my-8 lg:my-20">
       <article className="absolute translate-y-36 font-bold sm:translate-y-40">
         <span className="text-custom-gradient mr-2 inline-flex items-center text-3xl sm:text-6xl lg:text-7xl xl:text-8xl">
           &gt;&gt;
@@ -17,6 +17,7 @@ export function FirstFold() {
           Nunca foi tão fácil desenvolver suas habilidades
         </p>
       </article>
+      <div className="absolute top-[6rem] -z-50 h-[50%] w-[30%] translate-x-20 rotate-45 bg-secondary-800 opacity-20 blur-3xl" />
       <div className="image-background -translate-y-36 sm:-translate-y-28 md:-translate-y-16" />
     </section>
   )
