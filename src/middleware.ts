@@ -4,7 +4,7 @@ import { actions } from './actions'
 
 export async function middleware(request: NextRequest) {
   const token = cookies().get('wits-app-session')?.value
-  const baseUrl = String(process.env.BASE_URL)
+  const baseUrl = 'https://wits-site-webapp-42m9.vercel.app'
   const referer = request.headers.get('referer') || 'unknown'
   const exit = !!request.nextUrl.searchParams.get('exit')
 
